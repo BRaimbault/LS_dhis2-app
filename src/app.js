@@ -34,7 +34,7 @@ render(<LoadingMask />, document.getElementById('app'));
  * @param d2 Instance of the d2 library that is returned by the `init` function.
  */
 function startApp(d2) {
-    render(<App d2={d2} />, document.querySelector('#app'));
+    render(<App d2={d2} sectionKey={'import'} />, document.querySelector('#app'));
 }
 
 

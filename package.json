@@ -1,13 +1,13 @@
 {
-  "name": "app-skeleton",
-  "version": "1.0.0",
-  "description": "Skeleton app for a DHIS2 web app",
+  "name": "LS_dhis2-app",
+  "version": "0.1.0",
+  "description": "LS_dhis2-app",
   "main": "src/index.html",
   "scripts": {
     "coverage": "babel-node node_modules/.bin/isparta cover --root ./src --report text --report html --report lcov node_modules/mocha/bin/_mocha -- --reporter dot --require config/setup.js --recursive test",
     "prebuild": "rm -rf build && mkdir build && d2-manifest package.json manifest.webapp",
     "build": "webpack",
-    "postbuild": "cp index.html build/ && cp icon.png build/ && cp node_modules/jquery/dist/jquery.min.js build/ && cp node_modules/babel-polyfill/dist/polyfill.min.js build/ && cp manifest.webapp build/",
+    "postbuild": "cp index.html build/ && cp icon.png build/ && cp node_modules/jquery/dist/jquery.min.js build/ && cp node_modules/babel-polyfill/dist/polyfill.min.js build/ && cp node_modules/xlsx/dist/xlsx.core.min.js build/ && cp manifest.webapp build/",
     "test": "mocha --reporter spec --compilers js:babel-core/register --require config/setup.js --recursive test",
     "test-watch": "mocha --reporter spec --compilers js:babel-core/register --require config/setup.js --recursive test --watch",
     "lint": "eslint --fix src && ./node_modules/eslint/bin/eslint.js --env node,mocha --global expect,sinon,spy,stub --rule 'no-unused-expressions: 0' test && scss-lint",
@@ -19,10 +19,12 @@
     "DHIS2",
     "App"
   ],
-  "author": "Mark Polak",
+  "author": "Bruno Raimbault, based on dhis2 app-skeleton by Mark Polak",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "jquery": "^2.2.3"
+    "jquery": "^2.2.3",
+    "xlsx": "*",
+    "file-saver": "*"
   },
   "devDependencies": {
     "babel-core": "^6.7.2",
@@ -70,12 +72,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dhis2/app-skeleton.git"
+    "url": "git+https://github.com/BRaimbault/LS_dhis2-app.git"
   },
   "bugs": {
-    "url": "https://github.com/dhis2/app-skeleton/issues"
+    "url": "https://github.com/BRaimbault/LS_dhis2-app/issues"
   },
-  "homepage": "https://github.com/dhis2/app-skeleton#readme",
+  "homepage": "https://github.com/BRaimbault/LS_dhis2-app#readme",
   "manifest.webapp": {
     "icons": {
       "48": "icon.png"

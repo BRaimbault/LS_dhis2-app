@@ -1,0 +1,47 @@
+PUT /dhis/api/events/vSLVL6oTslc HTTP/1.1
+Host: localhost:8989
+Connection: keep-alive
+Content-Length: 528
+Accept: application/json, text/plain, */*
+Origin: http://localhost:8989
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.81 Safari/537.36
+Content-Type: application/json;charset=UTF-8
+Referer: http://localhost:8989/dhis/dhis-web-tracker-capture/index.html
+Accept-Encoding: gzip, deflate, sdch, br
+Accept-Language: en-GB,en;q=0.8,en-US;q=0.6,fr;q=0.4,es;q=0.2,ca;q=0.2
+Cookie: JSESSIONID=E6AC6A5B2C0CBD5700F9C105D4FF6C09
+
+--------------------
+PAYLOAD
+--------------------
+{
+  "dataValues": [{
+    "value": 12,
+    "dataElement": "e4XZKCNJjlc"
+  }, {
+    "value": "LS_CHA1",
+    "dataElement": "quOYwc0SOqD"
+  }, {
+    "value": "LS_SER1",
+    "dataElement": "RvYugZqBKoN"
+  }, {
+    "value": "Positive",
+    "dataElement": "choHDFxMCaU"
+  }, {
+    "value": "Positive",
+    "dataElement": "UuKat0HFjWS"
+  }],
+  "event": "vSLVL6oTslc",
+  "program": "KDgzpKX3h2S",
+  "programStage": "lVglvBnE3TY",
+  "orgUnit": "O161S3uTLV3",
+  "trackedEntityInstance": "mz4zqjDOe06",
+  "status": "COMPLETED",
+  "dueDate": "2017-03-08",
+  "coordinate": {
+    "latitude": 0,
+    "longitude": 0
+  },
+  "eventDate": "2017-03-08",
+  "completedDate": "2017-05-02"
+}
