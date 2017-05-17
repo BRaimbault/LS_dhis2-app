@@ -1,6 +1,6 @@
 {
   "name": "LS_dhis2-app",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "LS_dhis2-app",
   "main": "src/index.html",
   "scripts": {

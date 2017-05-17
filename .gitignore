@@ -4,10 +4,9 @@
 
 # Project folders/dependencies
 node_modules
-build
 coverage
 manifest.webapp
+for_build
 
 # Misc files
 npm-debug.log
-

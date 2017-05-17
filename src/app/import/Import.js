@@ -30,7 +30,7 @@ const styles = {
   },
 };
 
-var dev = true;
+var dev = false;
 
 window.completed = 0;
 

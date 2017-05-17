@@ -56,24 +56,26 @@ var ToolsImport = {
     var dhisDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
     return "" + dhisYear + "-" + dhisMonth + "-" + dhisDate;
   },
-  headerToUid: function(header){
-    if(Lists.trackedEntityAttributes(header)){
-      return {}
+  getElements: function(stage,clientObj,elementType) {
+    console.log("fun ToolsImport.getElements - params: stage: ", stage , ", clientObj: ", clientObj, ", elementType: ", elementType);
+
+    var elements = [];
+    if (Lists.stages[stage][elementType + "s"]) {
+      var clientKeys = Object.keys(clientObj);
+      clientKeys.forEach(function(key) {
+        var element = Lists.stages[stage][elementType + "s"][key];
+        if (element) {
+          var temp = {};
+          temp[elementType] = element.uid;
+          temp["value"] = element.evaluate(clientObj[key]);
+          elements.push(temp);
+        }
+      });
     }
 
+    console.log("fun ToolsImport.getElements - elements: ", elements);
+    return elements;
   },
-  getOrgUnit: function() {
-
-  },
-  newEnrollment: function(enObj) {
-  },
-  newEvent: function(evObj) {
-  },
-  newDataValue: function(dvObj) {
-  },
-  newCategoryOption: function(caObj) {
-
-  }
 };
 
 export default ToolsImport;

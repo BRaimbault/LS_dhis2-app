@@ -15,7 +15,7 @@ const HeaderBar = withStateFrom(headerBarStore$, HeaderBarComponent);
 
 const sideBarSections = [
   { key: 'import', label: 'Import' },
-  { key: 'delete', label: 'Delete' },
+  //{ key: 'delete', label: 'Delete' },
   { key: 'export', label: 'Export' },
   { key: 'admin', label: 'Admin' },
 ];

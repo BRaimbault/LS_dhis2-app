@@ -7,22 +7,21 @@ var ProcessingDelete = {
     Tools.getTrackedEntityInstance("NE",{"CUIC":"_","ClientCode":"_"},ProcessingDelete.noTrackedEntityInstances,ProcessingDelete.deleteTrackedEntityInstances);
   },
   deleteTrackedEntityInstances: function(clientObj,payload) {
+    console.log("fun ProcessingDelete.deleteTrackedEntityInstancesInitiate: - params: clientObj: ", clientObj, ", payload: ", payload);
 
-    console.log(payload);
+    var deleteList = payload.trackedEntityInstances;
+    deleteList.forEach(function(deleteThis,e) {
+      console.log(e+1,"/",deleteList.length," - ",deleteThis);
+      var payload = null;
 
-    var xhr = new XMLHttpRequest();
-    xhr.withCredentials = true;
+      var xhr = new XMLHttpRequest();
+      xhr.withCredentials = true;
 
-    xhr.addEventListener("readystatechange", function () {
-      if (this.readyState === 4) {
-        console.log(JSON.parse(this.responseText));
-      }
+      var url = "http://localhost:8989/dhis/api/trackedEntityInstances/" + deleteThis.trackedEntityInstance;
+      console.log(url);
+      xhr.open("DELETE", url);
+      xhr.send(payload);
     });
-
-    xhr.open("POST", "http://localhost:8989/dhis/api/trackedEntityInstances?strategy=DELETE");
-    xhr.setRequestHeader("content-type", "application/json");
-    xhr.send(JSON.stringify(payload));
-
   },
   noTrackedEntityInstances: function() {
     console.log("No trackedEntityAttributes imported to delete.");
