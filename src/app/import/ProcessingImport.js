@@ -93,7 +93,7 @@ var ProcessingImport = {
       }
     }
     console.log("fun ProcessingImport.initiate: headerObject - ", headerObject);
-    ProcessingImport.iterateOverRows(rowHead + 1,colLength);
+    ProcessingImport.iterateOverRows(rowHead + 1,colLength + 1);
 
   },
   iterateOverRows: function(rowNum,rowMax) {

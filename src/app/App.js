@@ -9,6 +9,8 @@ import withStateFrom from 'd2-ui/lib/component-helpers/withStateFrom';
 import Sidebar from 'd2-ui/lib/sidebar/Sidebar.component';
 
 import Import from './import/Import';
+import Export from './export/Export';
+import Admin from './admin/Admin';
 import Delete from './delete/Delete';
 
 const HeaderBar = withStateFrom(headerBarStore$, HeaderBarComponent);
@@ -42,8 +44,10 @@ var App = React.createClass({
     var sectionContent = (
       <div>
       {key == 'import' && <Import />}
+      {key == 'export' && <Export />}
+      {key == 'admin' && <Admin />}
       {key == 'delete' && <Delete />}
-      {(key != 'import' && key != 'delete' && key != 'hop') && <p>This section is under construction...</p>}
+      {(key != 'import' && key != 'delete' && key != 'export' && key != 'admin') && <p>This section is under construction...</p>}
       </div>
     );
     return(

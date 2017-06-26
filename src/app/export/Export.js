@@ -1,26 +1,100 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 
-var url = "http://localhost:8989/dhis/api/documents/Zacj6Ykgyox/data";
+import RaisedButton from 'material-ui/lib/raised-button';
+import FontIcon from 'material-ui/lib/font-icon';
+import ActionAndroid from 'material-ui/lib/svg-icons/action/android';
 
-ImportModule = React.createClass({
-  downloadFile(){
-    /* bookType can be any supported output type */
-    var wopts = { bookType:'xlsx', bookSST:false, type:'binary' };
+import ProcessingExport from './ProcessingExport';
 
-    var wbout = XLSX.write(workbook,wopts);
+const styles = {
+};
 
-    function s2ab(s) {
-      var buf = new ArrayBuffer(s.length);
-      var view = new Uint8Array(buf);
-      for (var i=0; i!=s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
-      return buf;
-    }
+var dev = false;
 
-    /* the saveAs call downloads a file on the local machine */
-    saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), "test.xlsx");
-  }
-
-  render: function(){
-
+var Export = React.createClass({
+  render(){
+    return(
+      <table style={{float:"left",width:'100%'}}>
+        <tbody>
+          <tr>
+            <td style={{float:"left",width:'20%'}}>
+              <div id="export_test_disabled">
+                <RaisedButton
+                  label="Testing data from:"
+                  disabled={true}
+                />
+              </div>
+            </td>
+            <td style={{float:"left"}}>
+              <div id="export_test_month">
+                <RaisedButton
+                  label="Last Month in *.XLS"
+                  secondary={true}
+                  onClick={ProcessingExport.export_test_month}
+                />
+              </div>
+            </td>
+            <td style={{float:"left"}}>
+              <div id="export_test_week">
+                <RaisedButton
+                  label="Last Week in *.XLS"
+                  secondary={true}
+                  onClick={ProcessingExport.start}
+                />
+              </div>
+            </td>
+            <td style={{float:"left"}}>
+              <div id="export_test_open">
+                <RaisedButton
+                  label="Open Table in DHIS2"
+                  secondary={true}
+                  onClick={ProcessingExport.export_test_open}
+                />
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td style={{float:"left",width:'20%'}}>
+              <div id="export_refer_disabled">
+                <RaisedButton
+                  label="ART Referral data from:"
+                  disabled={true}
+                />
+              </div>
+            </td>
+            <td style={{float:"left"}}>
+              <div id="export_refer_month">
+                <RaisedButton
+                  label="Last Month in *.XLS"
+                  secondary={true}
+                  onClick={ProcessingExport.start}
+                />
+              </div>
+            </td>
+            <td style={{float:"left"}}>
+              <div id="export_refer_week">
+                <RaisedButton
+                  label="Last Week in *.XLS"
+                  secondary={true}
+                  onClick={ProcessingExport.start}
+                />
+              </div>
+            </td>
+            <td style={{float:"left"}}>
+              <div id="export_refer_disabled">
+                <RaisedButton
+                  label="Open Table in DHIS2"
+                  secondary={true}
+                  onClick={ProcessingExport.start}
+                />
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    );
   }
 });
+
+export default Export;

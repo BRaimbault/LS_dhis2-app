@@ -1,6 +1,6 @@
 import ToolsImport from './ToolsImport';
 
-window.OldID = "XQmoiBDmJwS";
+window.OldID = "Nz4w5ctIBLO";//Local BR "XQmoiBDmJwS";
 
 var Lists = {
   "stages": {
@@ -202,7 +202,7 @@ var Lists = {
           "nameDhis": "Client - Delivery channel",
           "uid": "quOYwc0SOqD",
           evaluate:   function (val) {
-            var categories = {"1": "LS_CHA1", "2":"LS_CHA2", "3":"LS_CHA3", "4":"LS_CHA4", "5":"LS_CHA5", "6":"LS_CHA6"};
+            var categories = {"1": "LS_CHA1", "2":"LS_CHA2", "3":"LS_CHA3", "4":"LS_CHA4", "5":"LS_CHA5", "6":"LS_CHA6", "7":"LS_CHA7"};
             return categories[val];
           },
         },
@@ -236,73 +236,19 @@ var Lists = {
           "uid": "GCl3ORKj1jC",
           evaluate:   function (val) { return val; },
         },
-        "#de+test+layer+1": {
-          "nameXls": "Layer - Assist / Sentibale",
-          "nameDhis": "Layer - Assist / Sentibale",
-          "uid": "M0Mr4xEU0EW",
+        "#de+test+layer": {
+          "nameXls": "Layer",
+          "nameDhis": "Layer",
+          "uid": "fGSXGuPIEOy",
           evaluate:   function (val) {
-            var categories = {"1": "true"};
+            var categories = {"1": "LAY01", "2": "LAY02", "3": "LAY03", "4": "LAY04", "5": "LAY05", "6": "LAY06", "7": "LAY07", "8": "LAY08"};
             return categories[val];
           },
         },
-        "#de+test+layer+2": {
-          "nameXls": "Layer - IPC",
-          "nameDhis": "Layer - IPC",
-          "uid": "LVObO0EMMhD",
-          evaluate:   function (val) {
-            var categories = {"1": "true"};
-            return categories[val];
-          },
-        },
-        "#de+test+layer+3": {
-          "nameXls": "Layer - M2M",
-          "nameDhis": "Layer - M2M",
-          "uid": "xoTc4jR9vrA",
-          evaluate:   function (val) {
-            var categories = {"1": "true"};
-            return categories[val];
-          },
-        },
-        "#de+test+layer+4": {
-          "nameXls": "Layer - CRS / Caritas",
-          "nameDhis": "Layer - CRS / Caritas",
-          "uid": "rsxVKBtNQnY",
-          evaluate:   function (val) {
-            var categories = {"1": "true"};
-            return categories[val];
-          },
-        },
-        "#de+test+layer+5": {
-          "nameXls": "Layer - Promo",
-          "nameDhis": "Layer - Promo",
-          "uid": "fh3oIGx7Olc",
-          evaluate:   function (val) {
-            var categories = {"1": "true"};
-            return categories[val];
-          },
-        },
-        "#de+test+layer+6": {
-          "nameXls": "Layer - WVI",
-          "nameDhis": "Layer - WVI",
-          "uid": "LuBoC8dgSlV",
-          evaluate:   function (val) {
-            var categories = {"1": "true"};
-            return categories[val];
-          },
-        },
-        "#de+test+layer+7": {
-          "nameXls": "Layer - Care for Lesotho",
-          "nameDhis": "Layer - Care for Lesotho",
-          "uid": "Qq571GOyMkU",
-          evaluate:   function (val) {
-            var categories = {"1": "true"};
-            return categories[val];
-          },
-        },
-        "#de+test+layer+8": {
+        "#de+test+layer+other": {
           "nameXls": "Layer - Other",
           "nameDhis": "Layer - Other",
-          "uid": "NDQouehqKGf",
+          "uid": "omugvBULuf0",
           evaluate:   function (val) { return val; },
         },
         "#de+test+ncd+h": {
@@ -460,16 +406,52 @@ var Lists = {
           "nameDhis": "Previous knowledge of HIV+ status",
           "uid": "esWS3Y9LDi6",
           evaluate:   function (val) {
-            var categories = {"1": "true"};
+            var categories = {"1": "true", "2":"false"};
             return categories[val];
           },
+        },
+        "#de+test+extra+deter": {
+          "nameXls": "Extra - Determine strips",
+          "nameDhis": "Extra - Determine strips",
+          "uid": "UOmjmckRjzR",
+          evaluate:   function (val) { return val; },
+        },
+        "#de+test+extra+unigo": {
+          "nameXls": "Extra - Unigold strips",
+          "nameDhis": "Extra - Unigold strips",
+          "uid": "tYNs16xzTqS",
+          evaluate:   function (val) { return val; },
+        },
+        "#de+test+extra+tubes": {
+          "nameXls": "Extra - Capillary tubes",
+          "nameDhis": "Extra - Capillary tubes",
+          "uid": "kY8Yhg3va7P",
+          evaluate:   function (val) { return val; },
+        },
+        "#de+test+extra+alcoh": {
+          "nameXls": "Extra - Alcohol swabs",
+          "nameDhis": "Extra - Alcohol swabs",
+          "uid": "GmbfRCbWdRA",
+          evaluate:   function (val) { return val; },
+        },
+        "#de+test+extra+lance": {
+          "nameXls": "Extra - Blood lancets",
+          "nameDhis": "Extra - Blood lancets",
+          "uid": "dqynj0LR6ba",
+          evaluate:   function (val) { return val; },
+        },
+        "#de+test+extra+glove": {
+          "nameXls": "Extra - Exam gloves",
+          "nameDhis": "Extra - Exam gloves",
+          "uid": "qq2C8BLOe4F",
+          evaluate:   function (val) { return val; },
         },
         "#de+test+tb+conduct": {
           "nameXls": "TB screening conducted",
           "nameDhis": "Referral - TB screening conducted",
           "uid": "mkVl2wjztaz",
           evaluate:   function (val) {
-            var categories = {"1": "true"};
+            var categories = {"1": "true", "2":"false"};
             return categories[val];
           },
         },
@@ -487,7 +469,7 @@ var Lists = {
           "nameDhis": "Referral - Referral offered",
           "uid": "r8AftzZCjWP",
           evaluate:   function (val) {
-            var categories = {"1": "true"};
+            var categories = {"1": "true", "2":"false"};
             return categories[val];
           },
         },
@@ -531,6 +513,15 @@ var Lists = {
           "nameXls": "PReP (HIV-)",
           "nameDhis": "Referral - PReP (HIV-)",
           "uid": "sTmbmjnUhrA",
+          evaluate:   function (val) {
+            var categories = {"1": "true"};
+            return categories[val];
+          },
+        },
+        "#de+test+refer+dna": {
+          "nameXls": "DNA PCR",
+          "nameDhis": "Referral - DNA PCR",
+          "uid": "ZKWK5UIO9wp",
           evaluate:   function (val) {
             var categories = {"1": "true"};
             return categories[val];
@@ -723,7 +714,7 @@ var Lists = {
           "nameDhis": "Type of contact",
           "uid": "wzM3bUiPowS",
           evaluate:   function (val) {
-            var categories = {"1": "true", "2":"false"};
+            var categories = {"1": "PHONE", "2":"SMS", "3":"PERSON"};
             return categories[val];
           },
         },
@@ -764,129 +755,570 @@ var Lists = {
       "uid": "QPRZuTHu18l",
     },
     "#ou+adm1": {
-      "1": {
-        "nameDhis": "Maseru (01)",
-        "uid": "QPRZuTHu18l",
-        "parent": "LS",
-        "nameXls": "1",
-        "optionSet": "05",
-      },
-      "3": {
+      "LS03": {
         "nameDhis": "Leribe (03)",
         "uid": "rp9THcpEmRk",
-        "parent": "LS",
-        "nameXls": "3",
+        "nameXls": "LS03",
         "optionSet": "03",
-      }
+        "parent": "LS"
+      },
+      "LS01": {
+        "nameDhis": "Maseru (01)",
+        "uid": "QPRZuTHu18l",
+        "nameXls": "LS01",
+        "optionSet": "01",
+        "parent": "LS"
+      },
+      "LS09": {
+        "nameDhis": "Mokhotlong (09)",
+        "uid": "vNhNoq47IHU",
+        "nameXls": "LS09",
+        "optionSet": "09",
+        "parent": "LS"
+      },
+      "LS02": {
+        "nameDhis": "Butha Buthe (02)",
+        "uid": "HuxtEzVg7Fh",
+        "nameXls": "LS02",
+        "optionSet": "02",
+        "parent": "LS"
+      },
+      "LS05": {
+        "nameDhis": "Mafeteng (05)",
+        "uid": "ztofJR0XBPQ",
+        "nameXls": "LS05",
+        "optionSet": "05",
+        "parent": "LS"
+      },
+      "LS07": {
+        "nameDhis": "Quthing (07)",
+        "uid": "bUqBiVA5CNu",
+        "nameXls": "LS07",
+        "optionSet": "07",
+        "parent": "LS"
+      },
+      "LS06": {
+        "nameDhis": "Mohale's Hoek (06)",
+        "uid": "SKAwa0gTWOn",
+        "nameXls": "LS06",
+        "optionSet": "06",
+        "parent": "LS"
+      },
+      "LS04": {
+        "nameDhis": "Berea (04)",
+        "uid": "ywXuaGCp1JN",
+        "nameXls": "LS04",
+        "optionSet": "04",
+        "parent": "LS"
+      },
+      "LS08": {
+        "nameDhis": "Qacha's Nek (08)",
+        "uid": "JpHAT8IQqWc",
+        "nameXls": "LS08",
+        "optionSet": "08",
+        "parent": "LS"
+      },
+      "LS10": {
+        "nameDhis": "Thaba Tseka (10)",
+        "uid": "BfWFyhN4Hhr",
+        "nameXls": "LS10",
+        "optionSet": "10",
+        "parent": "LS"
+      },
     },
     "#ou+adm2": {
-      "Likolobeng A03": {
-        "nameDhis": "Likolobeng A03 (013904)",
-        "uid": "anjmGLCTTNB",
-        "parent": "1",
-        "nameXls": "",
-      },
-      "Mazenod A06": {
-        "nameDhis": "Mazenod A06 (014309)",
-        "uid": "KZgkbAmRWIu",
-        "parent": "1",
-        "nameXls": "",
-      },
-      "Makhoarane A08": {
-        "nameDhis": "Makhoarane A08 (014511)",
-        "uid": "epdvPcnet5Q",
-        "parent": "1",
-        "nameXls": "",
-      },
-      "Kubake A09": {
-        "nameDhis": "Kubake A09 (014512)",
-        "uid": "FsdhkF2xcRT",
-        "parent": "1",
-        "nameXls": "",
-      },
-      "Matsoku C01": {
-        "nameDhis": "Matsoku C01 (030601)",
-        "uid": "wtWiqkTijBP",
-        "parent": "3",
-        "nameXls": "",
-      },
-      "Mamafubelu C04": {
-        "nameDhis": "Maoamafubelu C04 (030908)",
-        "uid": "vjN3wXIwogG",
-        "parent": "3",
-        "nameXls": "",
-      },
-      "Litjotjela C08": {
-        "nameDhis": "Litjotjela C08 (031414)",
-        "uid": "xInpsLkifcS",
-        "parent": "3",
-        "nameXls": "",
-      },
-      "Manka C10": {
-        "nameDhis": "Manka C10 (031717)",
-        "uid": "GqtHUHVRXch",
-        "parent": "3",
-        "nameXls": "",
-      },
-      "Maputsoe urban council": {
-        "nameDhis": "Maputsoe urban council (031515)",
-        "uid": "SSnj1hiozjl",
-        "parent": "3",
-        "nameXls": "",
-      },
-      "Hlotse urban council": {
-        "nameDhis": "Hlotse urban council (031313)",
-        "uid": "KQxjlV6Bt3l",
-        "parent": "3",
-        "nameXls": "",
-      }
+       "LS031010": {
+         "parent": "LS03",
+         "nameDhis": "Menkhoaneng C05 (031010)",
+         "uid": "ExnDUccM0wh",
+         "nameXls": "LS031010"
+       },
+       "LS031515": {
+         "parent": "LS03",
+         "nameDhis": "Maputsoe urban council (031515)",
+         "uid": "SSnj1hiozjl",
+         "nameXls": "LS031515"
+       },
+       "LS031818": {
+         "parent": "LS03",
+         "nameDhis": "Tsoili-Tsoili C11 (031818)",
+         "uid": "as3ohcRMzPf",
+         "nameXls": "LS031818"
+       },
+       "LS031111": {
+         "parent": "LS03",
+         "nameDhis": "Maisa-Phoka C06 (031111)",
+         "uid": "UZJXKmhnOK8",
+         "nameXls": "LS031111"
+       },
+       "LS031414": {
+         "parent": "LS03",
+         "nameDhis": "Litjotjela C08 (031414)",
+         "uid": "xInpsLkifcS",
+         "nameXls": "LS031414"
+       },
+       "LS030704": {
+         "parent": "LS03",
+         "nameDhis": "Bolahla C02 (030704)",
+         "uid": "K9Uf9iDW0YO",
+         "nameXls": "LS030704"
+       },
+       "LS031717": {
+         "parent": "LS03",
+         "nameDhis": "Manka C10 (031717)",
+         "uid": "GqtHUHVRXch",
+         "nameXls": "LS031717"
+       },
+       "LS030908": {
+         "parent": "LS03",
+         "nameDhis": "Mamafubelu C04 (030908)",
+         "uid": "vjN3wXIwogG",
+         "nameXls": "LS030908"
+       },
+       "LS030806": {
+         "parent": "LS03",
+         "nameDhis": "Ramapepe C03 (030806)",
+         "uid": "rasggRQQLbI",
+         "nameXls": "LS030806"
+       },
+       "LS031212": {
+         "parent": "LS03",
+         "nameDhis": "Sephokong C07 (031212)",
+         "uid": "iRjsiLfsX5E",
+         "nameXls": "LS031212"
+       },
+       "LS031616": {
+         "parent": "LS03",
+         "nameDhis": "Hleoheng C09 (031616)",
+         "uid": "AlY7kfwaOkT",
+         "nameXls": "LS031616"
+       },
+       "LS031313": {
+         "parent": "LS03",
+         "nameDhis": "Hlotse urban council (031313)",
+         "uid": "KQxjlV6Bt3l",
+         "nameXls": "LS031313"
+       },
+       "LS030601": {
+         "parent": "LS03",
+         "nameDhis": "Matsoku C01 (030601)",
+         "uid": "wtWiqkTijBP",
+         "nameXls": "LS030601"
+       },
+       "LS013701": {
+         "parent": "LS01",
+         "nameDhis": "Qiloane A01 (013701)",
+         "uid": "OTmyIqbHkqI",
+         "nameXls": "LS013701"
+       },
+       "LS014512": {
+         "parent": "LS01",
+         "nameDhis": "Kubake A09 (014512)",
+         "uid": "FsdhkF2xcRT",
+         "nameXls": "LS014512"
+       },
+       "LS013201": {
+         "parent": "LS01",
+         "nameDhis": "Maseru Central - MCC (013201)",
+         "uid": "mxR0T9D3r6w",
+         "nameXls": "LS013201"
+       },
+       "LS014511": {
+         "parent": "LS01",
+         "nameDhis": "Makhoarane A08 (014511)",
+         "uid": "epdvPcnet5Q",
+         "nameXls": "LS014511"
+       },
+       "LS013802": {
+         "parent": "LS01",
+         "nameDhis": "Ratau A02 (013802)",
+         "uid": "ZtdqvKN9NAY",
+         "nameXls": "LS013802"
+       },
+       "LS014309": {
+         "parent": "LS01",
+         "nameDhis": "Mazenod A06 (014309)",
+         "uid": "KZgkbAmRWIu",
+         "nameXls": "LS014309"
+       },
+       "LS014006": {
+         "parent": "LS01",
+         "nameDhis": "Manonyane A04 (014006)",
+         "uid": "iLT1py94y6Z",
+         "nameXls": "LS014006"
+       },
+       "LS014614": {
+         "parent": "LS01",
+         "nameDhis": "Semonkong urban council (014614)",
+         "uid": "nqzbAKlFbCH",
+         "nameXls": "LS014614"
+       },
+       "LS014410": {
+         "parent": "LS01",
+         "nameDhis": "Lilala A07 (014410)",
+         "uid": "uo8bJ5dyrMq",
+         "nameXls": "LS014410"
+       },
+       "LS014208": {
+         "parent": "LS01",
+         "nameDhis": "Mohlakeng A05 (014208)",
+         "uid": "WdLxSgOKh7z",
+         "nameXls": "LS014208"
+       },
+       "LS014613": {
+         "parent": "LS01",
+         "nameDhis": "Makhoalipana A10 (014613)",
+         "uid": "QFIGR956G2q",
+         "nameXls": "LS014613"
+       },
+       "LS013904": {
+         "parent": "LS01",
+         "nameDhis": "Likolobeng A03 (013904)",
+         "uid": "anjmGLCTTNB",
+         "nameXls": "LS013904"
+       },
+       "LS097908": {
+         "parent": "LS09",
+         "nameDhis": "Sanqebethu J03 (097908)",
+         "uid": "oMlRPZTXaJh",
+         "nameXls": "LS097908"
+       },
+       "LS097805": {
+         "parent": "LS09",
+         "nameDhis": "Mphokojoana J02 (097805)",
+         "uid": "RqqGW8n8srE",
+         "nameXls": "LS097805"
+       },
+       "LS097909": {
+         "parent": "LS09",
+         "nameDhis": "Mokhotlong urban council (097909)",
+         "uid": "MRaap9GkAhX",
+         "nameXls": "LS097909"
+       },
+       "LS097701": {
+         "parent": "LS09",
+         "nameDhis": "Seate J01 (097701)",
+         "uid": "PFNXYruS5tT",
+         "nameXls": "LS097701"
+       },
+       "LS098012": {
+         "parent": "LS09",
+         "nameDhis": "Menoaneng J04 (098012)",
+         "uid": "cHAMLcqSNjf",
+         "nameXls": "LS098012"
+       },
+       "LS020409": {
+         "parent": "LS02",
+         "nameDhis": "Ts'ale-Le-Moleka B04 (020409)",
+         "uid": "hEaKfRZ3Fzf",
+         "nameXls": "LS020409"
+       },
+       "LS020101": {
+         "parent": "LS02",
+         "nameDhis": "Ngoajane B01 (020101)",
+         "uid": "DPpKjXuyVhj",
+         "nameXls": "LS020101"
+       },
+       "LS020510": {
+         "parent": "LS02",
+         "nameDhis": "Butha Buthe Urban council (020510)",
+         "uid": "ZWRZWcXKctp",
+         "nameXls": "LS020510"
+       },
+       "LS020204": {
+         "parent": "LS02",
+         "nameDhis": "Likila B02 (020204)",
+         "uid": "kTNtaqoPVyZ",
+         "nameXls": "LS020204"
+       },
+       "LS020305": {
+         "parent": "LS02",
+         "nameDhis": "Nqoe B03 (020305)",
+         "uid": "XuQvaSICrxB",
+         "nameXls": "LS020305"
+       },
+       "LS054701": {
+         "parent": "LS05",
+         "nameDhis": "Metsi-Maholo E01 (054701)",
+         "uid": "ou7FDO5DfeG",
+         "nameXls": "LS054701"
+       },
+       "LS054903": {
+         "parent": "LS05",
+         "nameDhis": "Ramoetsana E03 (054903)",
+         "uid": "fiUNhfMW1MX",
+         "nameXls": "LS054903"
+       },
+       "LS054904": {
+         "parent": "LS05",
+         "nameDhis": "Lehlakaneng E04 (054904)",
+         "uid": "pXabJ9mtgur",
+         "nameXls": "LS054904"
+       },
+       "LS054802": {
+         "parent": "LS05",
+         "nameDhis": "Mamants'o E02 (054802)",
+         "uid": "jp3Br5JwnEh",
+         "nameXls": "LS054802"
+       },
+       "LS055208": {
+         "parent": "LS05",
+         "nameDhis": "Mafeteng urban council (055208)",
+         "uid": "W66mv6ZqWks",
+         "nameXls": "LS055208"
+       },
+       "LS054907": {
+         "parent": "LS05",
+         "nameDhis": "Qibing E07 (054907)",
+         "uid": "OHoBVqhPFdj",
+         "nameXls": "LS054907"
+       },
+       "LS054905": {
+         "parent": "LS05",
+         "nameDhis": "Makoabating E05 (054905)",
+         "uid": "ZzdHfPqyu1b",
+         "nameXls": "LS054905"
+       },
+       "LS054906": {
+         "parent": "LS05",
+         "nameDhis": "Ts'ana-Talana E06 (054906)",
+         "uid": "aulhngcwiHf",
+         "nameXls": "LS054906"
+       },
+       "LS076503": {
+         "parent": "LS07",
+         "nameDhis": "Qomoqomong G02 (076503)",
+         "uid": "kXFqvdcPKHC",
+         "nameXls": "LS076503"
+       },
+       "LS076707": {
+         "parent": "LS07",
+         "nameDhis": "Telle G04 (076707)",
+         "uid": "TIT649RRgzf",
+         "nameXls": "LS076707"
+       },
+       "LS076605": {
+         "parent": "LS07",
+         "nameDhis": "Tosing G03 (076605)",
+         "uid": "z0EVhO9vtul",
+         "nameXls": "LS076605"
+       },
+       "LS076504": {
+         "parent": "LS07",
+         "nameDhis": "Quthing urban council (076504)",
+         "uid": "SJKcstAuOix",
+         "nameXls": "LS076504"
+       },
+       "LS076809": {
+         "parent": "LS07",
+         "nameDhis": "Mphaki G05 (076809)",
+         "uid": "tGn8ffM3Gld",
+         "nameXls": "LS076809"
+       },
+       "LS076401": {
+         "parent": "LS07",
+         "nameDhis": "Mtjanyane G01 (076401)",
+         "uid": "f1fiJwG8EqU",
+         "nameXls": "LS076401"
+       },
+       "LS065904": {
+         "parent": "LS06",
+         "nameDhis": "Khoelenya F03 (065904)",
+         "uid": "a2BhNVaRPuX",
+         "nameXls": "LS065904"
+       },
+       "LS066005": {
+         "parent": "LS06",
+         "nameDhis": "Lithipeng F04 (066005)",
+         "uid": "hyMqltsoJ4z",
+         "nameXls": "LS066005"
+       },
+       "LS065601": {
+         "parent": "LS06",
+         "nameDhis": "Siloe F01 (065601)",
+         "uid": "yApxsln0dIl",
+         "nameXls": "LS065601"
+       },
+       "LS065803": {
+         "parent": "LS06",
+         "nameDhis": "Mohale's Hoek urban council (065803)",
+         "uid": "QMGPYWWhYJs",
+         "nameXls": "LS065803"
+       },
+       "LS065702": {
+         "parent": "LS06",
+         "nameDhis": "Mashaleng F02 (065702)",
+         "uid": "xK43YaJs7AB",
+         "nameXls": "LS065702"
+       },
+       "LS066209": {
+         "parent": "LS06",
+         "nameDhis": "Qhoasing F06 (066209)",
+         "uid": "d7Gz1pXL6BC",
+         "nameXls": "LS066209"
+       },
+       "LS066108": {
+         "parent": "LS06",
+         "nameDhis": "Thaba-Mokhele F05 (066108)",
+         "uid": "y6zJN7TTaak",
+         "nameXls": "LS066108"
+       },
+       "LS066312": {
+         "parent": "LS06",
+         "nameDhis": "Senqunyane F07 (066312)",
+         "uid": "iwx4oiQ5p6w",
+         "nameXls": "LS066312"
+       },
+       "LS042709": {
+         "parent": "LS04",
+         "nameDhis": "Kanana D08 (042709)",
+         "uid": "KauEn2jKOk6",
+         "nameXls": "LS042709"
+       },
+       "LS041901": {
+         "parent": "LS04",
+         "nameDhis": "Makeoana D01 (041901)",
+         "uid": "Zn7kf51v9ov",
+         "nameXls": "LS041901"
+       },
+       "LS042507": {
+         "parent": "LS04",
+         "nameDhis": "Motanasela D06 (042507)",
+         "uid": "HsMdQCwfl1R",
+         "nameXls": "LS042507"
+       },
+       "LS042305": {
+         "parent": "LS04",
+         "nameDhis": "Phuthiatsana D05 (042305)",
+         "uid": "LYKzrLTul9U",
+         "nameXls": "LS042305"
+       },
+       "LS042103": {
+         "parent": "LS04",
+         "nameDhis": "Kueneng D03 (042103)",
+         "uid": "cqaNJ87HX92",
+         "nameXls": "LS042103"
+       },
+       "LS042204": {
+         "parent": "LS04",
+         "nameDhis": "Tebe-Tebe D04 (042204)",
+         "uid": "t16Jtf4LqCu",
+         "nameXls": "LS042204"
+       },
+       "LS042608": {
+         "parent": "LS04",
+         "nameDhis": "Senekane D07 (042608)",
+         "uid": "r6EH81I5Ayd",
+         "nameXls": "LS042608"
+       },
+       "LS042406": {
+         "parent": "LS04",
+         "nameDhis": "Berea Urban council (042406)",
+         "uid": "O161S3uTLV3",
+         "nameXls": "LS042406"
+       },
+       "LS042002": {
+         "parent": "LS04",
+         "nameDhis": "Mapoteng D02 (042002)",
+         "uid": "M8fKOjgMNnh",
+         "nameXls": "LS042002"
+       },
+       "LS086903": {
+         "parent": "LS08",
+         "nameDhis": "Qacha's Nek urban council (086903)",
+         "uid": "NmFLNsQYI46",
+         "nameXls": "LS086903"
+       },
+       "LS087108": {
+         "parent": "LS08",
+         "nameDhis": "Tsoelikana H03 (087108)",
+         "uid": "yb1krTjdJjC",
+         "nameXls": "LS087108"
+       },
+       "LS087004": {
+         "parent": "LS08",
+         "nameDhis": "Nts'upe H02 (087004)",
+         "uid": "kQtqtHNfeJS",
+         "nameXls": "LS087004"
+       },
+       "LS086902": {
+         "parent": "LS08",
+         "nameDhis": "Qanya H01 (086902)",
+         "uid": "gn2F0tvkNVS",
+         "nameXls": "LS086902"
+       },
+       "LS107510": {
+         "parent": "LS10",
+         "nameDhis": "Bokong K04 (107510)",
+         "uid": "ZIzox2kOt1t",
+         "nameXls": "LS107510"
+       },
+       "LS107508": {
+         "parent": "LS10",
+         "nameDhis": "Litsoetsoe K03 (107508)",
+         "uid": "t6tdC2ddxzo",
+         "nameXls": "LS107508"
+       },
+       "LS107201": {
+         "parent": "LS10",
+         "nameDhis": "Tenesolo K01 (107201)",
+         "uid": "hhVRk1NL8KH",
+         "nameXls": "LS107201"
+       },
+       "LS107305": {
+         "parent": "LS10",
+         "nameDhis": "Khutlo-se-Metsi K02 (107305)",
+         "uid": "kAKsCa7AGqk",
+         "nameXls": "LS107305"
+       },
+       "LS107306": {
+         "parent": "LS10",
+         "nameDhis": "Thaba-Tseka urban council (107306)",
+         "uid": "GuURF81NSL6",
+         "nameXls": "LS107306"
+       },
+       "LS107611": {
+         "parent": "LS10",
+         "nameDhis": "Linakeng K05 (107611)",
+         "uid": "QTanm9ZJfqX",
+         "nameXls": "LS107611"
+       }
     }
   },
   "#psiworker+id": {
-    "TES998": {
-      "name": "LS - TES998 - Makhahliso Jubilee ",
-      "uid": "yYshPBtwhh6",
-    },
-    "TES999": {
-      "name": "LS - TES999 - Sebilo Ramaili",
-      "uid": "eMdfcDfo11o",
-    },
-    "TES993": {
-      "name": "LS - TES993 - Limakatso Makara",
-      "uid": "tf1Qg1lgTu7",
-    },
-    "TES994": {
-      "name": "LS - TES994 - Malempe Lempe",
-      "uid": "laqkER51B82",
-    },
-    "TES995": {
-      "name": "LS - TES995 - Sellonane Mphuthing",
-      "uid": "lHOhIFPcMeg",
-    },
-    "TES996": {
-      "name": "LS - TES996 - Thandiwe Mosothoane",
-      "uid": "c4PrA303rEL",
-    },
-    "TES997": {
-      "name": "LS - TES997 - Lintle Shelile",
-      "uid": "MKLQdWqn2lB",
-    },
-    "TES992": {
-      "name": "LS - TES992 - Sempe Nako",
-      "uid": "mRldKUDbdi8",
-    },
-    "TES004": {
-      "name": "LS - TES004 - Rodolfo Melia",
-      "uid": "SbmIyk0onEK",
-    },
-    "TES005": {
-      "name": "LS - TES005 - Sarah Romorini",
-      "uid": "fGWQ2LpE00f",
-    },
-    "TES003": {
-      "name": "LS - TES003 - Bruno Raimbault",
-      "uid": "R9gS2Rfy55A",
-    },
+    "url": "categoryOptionGroups?fields=name,categoryOptions[name,code,id]",
+    "TES701": {
+       "name": "LS - TES701 - Counsellor1 Team1",
+       "uid": "ROfMKufLAPd"
+     },
+     "TES702": {
+       "name": "LS - TES702 - Counsellor2 Team1",
+       "uid": "D9S9oEGDpGX"
+     },
+     "TES703": {
+       "name": "LS - TES703 - Counsellor3 Team2",
+       "uid": "l3en25Gvjsr"
+     },
+     "TES704": {
+       "name": "LS - TES704 - Counsellor4 Team2",
+       "uid": "u0y3yLybcKN"
+     },
+     "TES706": {
+       "name": "LS - TES706 - Counsellor6 Team3",
+       "uid": "eqgmE4s0Twy"
+     },
+     "TES705": {
+       "name": "LS - TES705 - Counsellor5 Team3",
+       "uid": "dTIKuHvkh8O"
+     },
+     "TES709": {
+       "name": "LS - TES709 - RefCoord2 Team4",
+       "uid": "AEEGk90PTGF"
+     },
+     "TES708": {
+       "name": "LS - TES708 - RefCoord1 Team4",
+       "uid": "zXzDPZP4tUO"
+     },
   }
 };
 
