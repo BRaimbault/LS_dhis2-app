@@ -5,6 +5,8 @@ import RaisedButton from 'material-ui/lib/raised-button';
 import FontIcon from 'material-ui/lib/font-icon';
 import ActionAndroid from 'material-ui/lib/svg-icons/action/android';
 
+import Tools from './../Tools';
+
 import ProcessingExport from './ProcessingExport';
 
 const styles = {
@@ -18,7 +20,7 @@ var Export = React.createClass({
       <table style={{float:"left",width:'100%'}}>
         <tbody>
           <tr>
-            <td style={{float:"left",width:'20%'}}>
+            <td style={{float:"left",width:'30%'}}>
               <div id="export_test_disabled">
                 <RaisedButton
                   label="Testing data from:"
@@ -55,7 +57,7 @@ var Export = React.createClass({
             </td>
           </tr>
           <tr>
-            <td style={{float:"left",width:'20%'}}>
+            <td style={{float:"left",width:'30%'}}>
               <div id="export_refer_disabled">
                 <RaisedButton
                   label="ART Referral data from:"
@@ -94,7 +96,11 @@ var Export = React.createClass({
         </tbody>
       </table>
     );
-  }
+  },
+  componentWillMount(){
+    Tools.getUrl();
+    Tools.getList();
+  },
 });
 
 export default Export;

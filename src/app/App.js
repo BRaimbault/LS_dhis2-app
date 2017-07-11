@@ -8,18 +8,18 @@ import withStateFrom from 'd2-ui/lib/component-helpers/withStateFrom';
 
 import Sidebar from 'd2-ui/lib/sidebar/Sidebar.component';
 
-import Import from './import/Import';
 import Export from './export/Export';
+import Import from './import/Import';
 import Admin from './admin/Admin';
 import Delete from './delete/Delete';
 
 const HeaderBar = withStateFrom(headerBarStore$, HeaderBarComponent);
 
 const sideBarSections = [
-  { key: 'import', label: 'Import' },
-  //{ key: 'delete', label: 'Delete' },
   { key: 'export', label: 'Export' },
+  { key: 'import', label: 'Import' },
   { key: 'admin', label: 'Admin' },
+  //{ key: 'delete', label: 'Delete' },
 ];
 
 var App = React.createClass({
@@ -43,8 +43,8 @@ var App = React.createClass({
   renderSection(key) {
     var sectionContent = (
       <div>
-      {key == 'import' && <Import />}
       {key == 'export' && <Export />}
+      {key == 'import' && <Import />}
       {key == 'admin' && <Admin />}
       {key == 'delete' && <Delete />}
       {(key != 'import' && key != 'delete' && key != 'export' && key != 'admin') && <p>This section is under construction...</p>}

@@ -4,6 +4,8 @@ import RaisedButton from 'material-ui/lib/raised-button';
 import FontIcon from 'material-ui/lib/font-icon';
 import ActionAndroid from 'material-ui/lib/svg-icons/action/android';
 
+import Tools from './../Tools';
+
 import ProcessingImport from './ProcessingImport';
 
 const styles = {
@@ -58,8 +60,12 @@ var Import = React.createClass({
       </div>
     );
   },
+  componentWillMount(){
+    Tools.getUrl();
+    Tools.getList();
+  },
   componentDidMount(){
-    if(dev){
+    if(!window.e){
       ProcessingImport.start();
     };
   }

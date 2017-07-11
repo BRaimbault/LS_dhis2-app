@@ -1,0 +1,628 @@
+{
+    "ressources": {
+        "importMock": "m6399KcahUP",
+        "importSheet": null,
+        "importHXL": false,
+        "uidTrackedEntity": "MCPQUTHX1Ze",
+        "uidProgram": "KDgzpKX3h2S"
+    },
+    "dataPoints":{
+        "CUIC": {
+            "header": "UIC",
+            "uid": "rw3W9pDCPb2"
+        },
+        "CUIC_old": null,
+        "Client Information": {
+            "uid":          null,
+            "attribution":  null,
+            "date":         "DateOfTest",
+            "attributes": {
+                "TRACKEDENTITYATTRIBUTE_HEADER": {
+                    "nameXls":      "optional",
+                    "nameDhis":     "optional",
+                    "uid":          "TRACKEDENTITYATTRIBUTE_UID",
+                    "evaluate":     "EVALUATION_FUNCTION"
+                }
+            },
+            "dataElements": {
+                "DATAELEMENT_HEADER": {
+                    "nameXls":      "optional",
+                    "nameDhis":     "optional",
+                    "uid":          "TRACKEDENTITYATTRIBUTE_UID",
+                    "evaluate":     "EVALUATION_FUNCTION"
+                }
+            }
+        },
+        "STAGE_NAME": {
+            "name":         "STAGE_NAME",
+            "comment":      "",
+            "uid":          "STAGE_UID",
+            "attribution":  "HEADER_PSI_WORKER_ID",
+            "date":         "HEADER_DATE",
+            "attributes": {
+                "TRACKEDENTITYATTRIBUTE_HEADER": {
+                    "nameXls":      "optional",
+                    "nameDhis":     "optional",
+                    "uid":          "TRACKEDENTITYATTRIBUTE_UID",
+                    "evaluate":     "EVALUATION_FUNCTION"
+                }
+            },
+            "dataElements": {
+                "DATAELEMENT_HEADER": {
+                    "nameXls":      "optional",
+                    "nameDhis":     "optional",
+                    "uid":          "TRACKEDENTITYATTRIBUTE_UID",
+                    "evaluate":     "EVALUATION_FUNCTION"
+                }
+            }
+        }
+    },
+    "psiWorkers": {
+      "url": "categoryOptionGroups?fields=name,categoryOptions[name,code,id]",
+      "categroyId": "qVl8p3w3fI5",
+      "TES701": {
+         "name": "LS - TES701 - Counsellor1 Team1",
+         "uid": "ROfMKufLAPd"
+       },
+       "TES702": {
+         "name": "LS - TES702 - Counsellor2 Team1",
+         "uid": "D9S9oEGDpGX"
+       },
+       "TES703": {
+         "name": "LS - TES703 - Counsellor3 Team2",
+         "uid": "l3en25Gvjsr"
+       },
+       "TES704": {
+         "name": "LS - TES704 - Counsellor4 Team2",
+         "uid": "u0y3yLybcKN"
+       },
+       "TES706": {
+         "name": "LS - TES706 - Counsellor6 Team3",
+         "uid": "eqgmE4s0Twy"
+       },
+       "TES705": {
+         "name": "LS - TES705 - Counsellor5 Team3",
+         "uid": "dTIKuHvkh8O"
+       },
+       "TES709": {
+         "name": "LS - TES709 - RefCoord2 Team4",
+         "uid": "AEEGk90PTGF"
+       },
+       "TES708": {
+         "name": "LS - TES708 - RefCoord1 Team4",
+         "uid": "zXzDPZP4tUO"
+       }
+    },
+    "organisationUnits": {
+      "url": "organisationUnits/vJNI6blhosr?fields=id,name,children[id,name,children[id,name]]&paging=false",
+      "adm0": {
+        "header": null,
+        "LS": {
+          "nameDhis": "Lesotho",
+          "uid": "QPRZuTHu18l"
+        }
+      },
+      "adm1": {
+        "header": null,
+        "LS01": {
+          "nameDhis": "Maseru (01)",
+          "uid": "QPRZuTHu18l",
+          "optionSet": "01",
+          "parent": "LS"
+        },
+        "LS02": {
+          "nameDhis": "Butha Buthe (02)",
+          "uid": "HuxtEzVg7Fh",
+          "optionSet": "02",
+          "parent": "LS"
+        },
+        "LS03": {
+          "nameDhis": "Leribe (03)",
+          "uid": "rp9THcpEmRk",
+          "optionSet": "03",
+          "parent": "LS"
+        },
+        "LS04": {
+          "nameDhis": "Berea (04)",
+          "uid": "ywXuaGCp1JN",
+          "optionSet": "04",
+          "parent": "LS"
+        },
+        "LS05": {
+          "nameDhis": "Mafeteng (05)",
+          "uid": "ztofJR0XBPQ",
+          "optionSet": "05",
+          "parent": "LS"
+        },
+        "LS06": {
+          "nameDhis": "Mohale's Hoek (06)",
+          "uid": "SKAwa0gTWOn",
+          "optionSet": "06",
+          "parent": "LS"
+        },
+        "LS07": {
+          "nameDhis": "Quthing (07)",
+          "uid": "bUqBiVA5CNu",
+          "optionSet": "07",
+          "parent": "LS"
+        },
+        "LS08": {
+          "nameDhis": "Qacha's Nek (08)",
+          "uid": "JpHAT8IQqWc",
+          "optionSet": "08",
+          "parent": "LS"
+        },
+        "LS09": {
+          "nameDhis": "Mokhotlong (09)",
+          "uid": "vNhNoq47IHU",
+          "optionSet": "09",
+          "parent": "LS"
+        },
+        "LS10": {
+          "nameDhis": "Thaba Tseka (10)",
+          "uid": "BfWFyhN4Hhr",
+          "optionSet": "10",
+          "parent": "LS"
+        }
+      },
+      "adm2": {
+         "header": "Council",
+         "LS031010": {
+           "nameDhis": "Menkhoaneng C05 (031010)",
+           "uid": "ExnDUccM0wh",
+           "optionSet": "LS031010",
+           "parent": "LS03"
+         },
+         "LS031515": {
+           "nameDhis": "Maputsoe urban council (031515)",
+           "uid": "SSnj1hiozjl",
+           "optionSet": "LS031515",
+           "parent": "LS03"
+         },
+         "LS031818": {
+           "nameDhis": "Tsoili-Tsoili C11 (031818)",
+           "uid": "as3ohcRMzPf",
+           "optionSet": "LS031818",
+           "parent": "LS03"
+         },
+         "LS031111": {
+           "nameDhis": "Maisa-Phoka C06 (031111)",
+           "uid": "UZJXKmhnOK8",
+           "optionSet": "LS031111",
+           "parent": "LS03"
+         },
+         "LS031414": {
+           "nameDhis": "Litjotjela C08 (031414)",
+           "uid": "xInpsLkifcS",
+           "optionSet": "LS031414",
+           "parent": "LS03"
+         },
+         "LS030704": {
+           "nameDhis": "Bolahla C02 (030704)",
+           "uid": "K9Uf9iDW0YO",
+           "optionSet": "LS030704",
+           "parent": "LS03"
+         },
+         "LS031717": {
+           "nameDhis": "Manka C10 (031717)",
+           "uid": "GqtHUHVRXch",
+           "optionSet": "LS031717",
+           "parent": "LS03"
+         },
+         "LS030908": {
+           "nameDhis": "Mamafubelu C04 (030908)",
+           "uid": "vjN3wXIwogG",
+           "optionSet": "LS030908",
+           "parent": "LS03"
+         },
+         "LS030806": {
+           "nameDhis": "Ramapepe C03 (030806)",
+           "uid": "rasggRQQLbI",
+           "optionSet": "LS030806",
+           "parent": "LS03"
+         },
+         "LS031212": {
+           "nameDhis": "Sephokong C07 (031212)",
+           "uid": "iRjsiLfsX5E",
+           "optionSet": "LS031212",
+           "parent": "LS03"
+         },
+         "LS031616": {
+           "nameDhis": "Hleoheng C09 (031616)",
+           "uid": "AlY7kfwaOkT",
+           "optionSet": "LS031616",
+           "parent": "LS03"
+         },
+         "LS031313": {
+           "nameDhis": "Hlotse urban council (031313)",
+           "uid": "KQxjlV6Bt3l",
+           "optionSet": "LS031313",
+           "parent": "LS03"
+         },
+         "LS030601": {
+           "nameDhis": "Matsoku C01 (030601)",
+           "uid": "wtWiqkTijBP",
+           "optionSet": "LS030601",
+           "parent": "LS03"
+         },
+         "LS013701": {
+           "nameDhis": "Qiloane A01 (013701)",
+           "uid": "OTmyIqbHkqI",
+           "optionSet": "LS013701",
+           "parent": "LS01"
+         },
+         "LS014512": {
+           "nameDhis": "Kubake A09 (014512)",
+           "uid": "FsdhkF2xcRT",
+           "optionSet": "LS014512",
+           "parent": "LS01"
+         },
+         "LS013201": {
+           "nameDhis": "Maseru Central - MCC (013201)",
+           "uid": "mxR0T9D3r6w",
+           "optionSet": "LS013201",
+           "parent": "LS01"
+         },
+         "LS014511": {
+           "nameDhis": "Makhoarane A08 (014511)",
+           "uid": "epdvPcnet5Q",
+           "optionSet": "LS014511",
+           "parent": "LS01"
+         },
+         "LS013802": {
+           "nameDhis": "Ratau A02 (013802)",
+           "uid": "ZtdqvKN9NAY",
+           "optionSet": "LS013802",
+           "parent": "LS01"
+         },
+         "LS014309": {
+           "nameDhis": "Mazenod A06 (014309)",
+           "uid": "KZgkbAmRWIu",
+           "optionSet": "LS014309",
+           "parent": "LS01"
+         },
+         "LS014006": {
+           "nameDhis": "Manonyane A04 (014006)",
+           "uid": "iLT1py94y6Z",
+           "optionSet": "LS014006",
+           "parent": "LS01"
+         },
+         "LS014614": {
+           "nameDhis": "Semonkong urban council (014614)",
+           "uid": "nqzbAKlFbCH",
+           "optionSet": "LS014614",
+           "parent": "LS01"
+         },
+         "LS014410": {
+           "nameDhis": "Lilala A07 (014410)",
+           "uid": "uo8bJ5dyrMq",
+           "optionSet": "LS014410",
+           "parent": "LS01"
+         },
+         "LS014208": {
+           "nameDhis": "Mohlakeng A05 (014208)",
+           "uid": "WdLxSgOKh7z",
+           "optionSet": "LS014208",
+           "parent": "LS01"
+         },
+         "LS014613": {
+           "nameDhis": "Makhoalipana A10 (014613)",
+           "uid": "QFIGR956G2q",
+           "optionSet": "LS014613",
+           "parent": "LS01"
+         },
+         "LS013904": {
+           "nameDhis": "Likolobeng A03 (013904)",
+           "uid": "anjmGLCTTNB",
+           "optionSet": "LS013904",
+           "parent": "LS01"
+         },
+         "LS097908": {
+           "nameDhis": "Sanqebethu J03 (097908)",
+           "uid": "oMlRPZTXaJh",
+           "optionSet": "LS097908",
+           "parent": "LS09"
+         },
+         "LS097805": {
+           "nameDhis": "Mphokojoana J02 (097805)",
+           "uid": "RqqGW8n8srE",
+           "optionSet": "LS097805",
+           "parent": "LS09"
+         },
+         "LS097909": {
+           "nameDhis": "Mokhotlong urban council (097909)",
+           "uid": "MRaap9GkAhX",
+           "optionSet": "LS097909",
+           "parent": "LS09"
+         },
+         "LS097701": {
+           "nameDhis": "Seate J01 (097701)",
+           "uid": "PFNXYruS5tT",
+           "optionSet": "LS097701",
+           "parent": "LS09"
+         },
+         "LS098012": {
+           "nameDhis": "Menoaneng J04 (098012)",
+           "uid": "cHAMLcqSNjf",
+           "optionSet": "LS098012",
+           "parent": "LS09"
+         },
+         "LS020409": {
+           "nameDhis": "Ts'ale-Le-Moleka B04 (020409)",
+           "uid": "hEaKfRZ3Fzf",
+           "optionSet": "LS020409",
+           "parent": "LS02"
+         },
+         "LS020101": {
+           "nameDhis": "Ngoajane B01 (020101)",
+           "uid": "DPpKjXuyVhj",
+           "optionSet": "LS020101",
+           "parent": "LS02"
+         },
+         "LS020510": {
+           "nameDhis": "Butha Buthe Urban council (020510)",
+           "uid": "ZWRZWcXKctp",
+           "optionSet": "LS020510",
+           "parent": "LS02"
+         },
+         "LS020204": {
+           "nameDhis": "Likila B02 (020204)",
+           "uid": "kTNtaqoPVyZ",
+           "optionSet": "LS020204",
+           "parent": "LS02"
+         },
+         "LS020305": {
+           "nameDhis": "Nqoe B03 (020305)",
+           "uid": "XuQvaSICrxB",
+           "optionSet": "LS020305",
+           "parent": "LS02"
+         },
+         "LS054701": {
+           "nameDhis": "Metsi-Maholo E01 (054701)",
+           "uid": "ou7FDO5DfeG",
+           "optionSet": "LS054701",
+           "parent": "LS05"
+         },
+         "LS054903": {
+           "nameDhis": "Ramoetsana E03 (054903)",
+           "uid": "fiUNhfMW1MX",
+           "optionSet": "LS054903",
+           "parent": "LS05"
+         },
+         "LS054904": {
+           "nameDhis": "Lehlakaneng E04 (054904)",
+           "uid": "pXabJ9mtgur",
+           "optionSet": "LS054904",
+           "parent": "LS05"
+         },
+         "LS054802": {
+           "nameDhis": "Mamants'o E02 (054802)",
+           "uid": "jp3Br5JwnEh",
+           "optionSet": "LS054802",
+           "parent": "LS05"
+         },
+         "LS055208": {
+           "nameDhis": "Mafeteng urban council (055208)",
+           "uid": "W66mv6ZqWks",
+           "optionSet": "LS055208",
+           "parent": "LS05"
+         },
+         "LS054907": {
+           "nameDhis": "Qibing E07 (054907)",
+           "uid": "OHoBVqhPFdj",
+           "optionSet": "LS054907",
+           "parent": "LS05"
+         },
+         "LS054905": {
+           "nameDhis": "Makoabating E05 (054905)",
+           "uid": "ZzdHfPqyu1b",
+           "optionSet": "LS054905",
+           "parent": "LS05"
+         },
+         "LS054906": {
+           "nameDhis": "Ts'ana-Talana E06 (054906)",
+           "uid": "aulhngcwiHf",
+           "optionSet": "LS054906",
+           "parent": "LS05"
+         },
+         "LS076503": {
+           "nameDhis": "Qomoqomong G02 (076503)",
+           "uid": "kXFqvdcPKHC",
+           "optionSet": "LS076503",
+           "parent": "LS07"
+         },
+         "LS076707": {
+           "nameDhis": "Telle G04 (076707)",
+           "uid": "TIT649RRgzf",
+           "optionSet": "LS076707",
+           "parent": "LS07"
+         },
+         "LS076605": {
+           "nameDhis": "Tosing G03 (076605)",
+           "uid": "z0EVhO9vtul",
+           "optionSet": "LS076605",
+           "parent": "LS07"
+         },
+         "LS076504": {
+           "nameDhis": "Quthing urban council (076504)",
+           "uid": "SJKcstAuOix",
+           "optionSet": "LS076504",
+           "parent": "LS07"
+         },
+         "LS076809": {
+           "nameDhis": "Mphaki G05 (076809)",
+           "uid": "tGn8ffM3Gld",
+           "optionSet": "LS076809",
+           "parent": "LS07"
+         },
+         "LS076401": {
+           "nameDhis": "Mtjanyane G01 (076401)",
+           "uid": "f1fiJwG8EqU",
+           "optionSet": "LS076401",
+           "parent": "LS07"
+         },
+         "LS065904": {
+           "nameDhis": "Khoelenya F03 (065904)",
+           "uid": "a2BhNVaRPuX",
+           "optionSet": "LS065904",
+           "parent": "LS06"
+         },
+         "LS066005": {
+           "nameDhis": "Lithipeng F04 (066005)",
+           "uid": "hyMqltsoJ4z",
+           "optionSet": "LS066005",
+           "parent": "LS06"
+         },
+         "LS065601": {
+           "nameDhis": "Siloe F01 (065601)",
+           "uid": "yApxsln0dIl",
+           "optionSet": "LS065601",
+           "parent": "LS06"
+         },
+         "LS065803": {
+           "nameDhis": "Mohale's Hoek urban council (065803)",
+           "uid": "QMGPYWWhYJs",
+           "optionSet": "LS065803",
+           "parent": "LS06"
+         },
+         "LS065702": {
+           "nameDhis": "Mashaleng F02 (065702)",
+           "uid": "xK43YaJs7AB",
+           "optionSet": "LS065702",
+           "parent": "LS06"
+         },
+         "LS066209": {
+           "nameDhis": "Qhoasing F06 (066209)",
+           "uid": "d7Gz1pXL6BC",
+           "optionSet": "LS066209",
+           "parent": "LS06"
+         },
+         "LS066108": {
+           "nameDhis": "Thaba-Mokhele F05 (066108)",
+           "uid": "y6zJN7TTaak",
+           "optionSet": "LS066108",
+           "parent": "LS06"
+         },
+         "LS066312": {
+           "nameDhis": "Senqunyane F07 (066312)",
+           "uid": "iwx4oiQ5p6w",
+           "optionSet": "LS066312",
+           "parent": "LS06"
+         },
+         "LS042709": {
+           "nameDhis": "Kanana D08 (042709)",
+           "uid": "KauEn2jKOk6",
+           "optionSet": "LS042709",
+           "parent": "LS04"
+         },
+         "LS041901": {
+           "nameDhis": "Makeoana D01 (041901)",
+           "uid": "Zn7kf51v9ov",
+           "optionSet": "LS041901",
+           "parent": "LS04"
+         },
+         "LS042507": {
+           "nameDhis": "Motanasela D06 (042507)",
+           "uid": "HsMdQCwfl1R",
+           "optionSet": "LS042507",
+           "parent": "LS04"
+         },
+         "LS042305": {
+           "nameDhis": "Phuthiatsana D05 (042305)",
+           "uid": "LYKzrLTul9U",
+           "optionSet": "LS042305",
+           "parent": "LS04"
+         },
+         "LS042103": {
+           "nameDhis": "Kueneng D03 (042103)",
+           "uid": "cqaNJ87HX92",
+           "optionSet": "LS042103",
+           "parent": "LS04"
+         },
+         "LS042204": {
+           "nameDhis": "Tebe-Tebe D04 (042204)",
+           "uid": "t16Jtf4LqCu",
+           "optionSet": "LS042204",
+           "parent": "LS04"
+         },
+         "LS042608": {
+           "nameDhis": "Senekane D07 (042608)",
+           "uid": "r6EH81I5Ayd",
+           "optionSet": "LS042608",
+           "parent": "LS04"
+         },
+         "LS042406": {
+           "nameDhis": "Berea Urban council (042406)",
+           "uid": "O161S3uTLV3",
+           "optionSet": "LS042406",
+           "parent": "LS04"
+         },
+         "LS042002": {
+           "nameDhis": "Mapoteng D02 (042002)",
+           "uid": "M8fKOjgMNnh",
+           "optionSet": "LS042002",
+           "parent": "LS04"
+         },
+         "LS086903": {
+           "nameDhis": "Qacha's Nek urban council (086903)",
+           "uid": "NmFLNsQYI46",
+           "optionSet": "LS086903",
+           "parent": "LS08"
+         },
+         "LS087108": {
+           "nameDhis": "Tsoelikana H03 (087108)",
+           "uid": "yb1krTjdJjC",
+           "optionSet": "LS087108",
+           "parent": "LS08"
+         },
+         "LS087004": {
+           "nameDhis": "Nts'upe H02 (087004)",
+           "uid": "kQtqtHNfeJS",
+           "optionSet": "LS087004",
+           "parent": "LS08"
+         },
+         "LS086902": {
+           "nameDhis": "Qanya H01 (086902)",
+           "uid": "gn2F0tvkNVS",
+           "optionSet": "LS086902",
+           "parent": "LS08"
+         },
+         "LS107510": {
+           "nameDhis": "Bokong K04 (107510)",
+           "uid": "ZIzox2kOt1t",
+           "optionSet": "LS107510",
+           "parent": "LS10"
+         },
+         "LS107508": {
+           "nameDhis": "Litsoetsoe K03 (107508)",
+           "uid": "t6tdC2ddxzo",
+           "optionSet": "LS107508",
+           "parent": "LS10"
+         },
+         "LS107201": {
+           "nameDhis": "Tenesolo K01 (107201)",
+           "uid": "hhVRk1NL8KH",
+           "optionSet": "LS107201",
+           "parent": "LS10"
+         },
+         "LS107305": {
+           "nameDhis": "Khutlo-se-Metsi K02 (107305)",
+           "uid": "kAKsCa7AGqk",
+           "optionSet": "LS107305",
+           "parent": "LS10"
+         },
+         "LS107306": {
+           "nameDhis": "Thaba-Tseka urban council (107306)",
+           "uid": "GuURF81NSL6",
+           "optionSet": "LS107306",
+           "parent": "LS10"
+         },
+         "LS107611": {
+           "nameDhis": "Linakeng K05 (107611)",
+           "uid": "QTanm9ZJfqX",
+           "optionSet": "LS107611",
+           "parent": "LS10"
+         }
+      }
+    }
+}
