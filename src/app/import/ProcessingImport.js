@@ -52,6 +52,12 @@ ProcessingImport.newEnrollment
 # Next action
     -> ProcessingImport.newEvent
 
+ProcessingImport.newEvent
+# prod & dev path
+#
+# Next action
+    -> ProcessingImport.
+
 */
 
 
@@ -216,16 +222,16 @@ var ProcessingImport = {
         }
       }
       if (Object.keys(clientObj).length == 0) {
-        updates = ToolsImport.logger(updates,"" + rowNum + "/" + window.wbk.thisRowNum + " - Empty row");
+        updates = ToolsImport.logger(updates,"Row: " + rowNum + "/" + window.wbk.thisRowNum + " - Empty row");
         ProcessingImport.iterateOverRows(rowNum + 1);
       } else {
         clientObj["rowNum"] = rowNum;
         ProcessingImport.checkTrackedEntityInstance(clientObj);
       }
     }else{
-      updates = ToolsImport.logger(updates,"All the records were imported successfully!");
+      updates = ToolsImport.logger(updates,"END OF PROCESS");
       updates = ToolsImport.logger(updates,"---------------------------------------------");
-      console.log("THE END");
+      console.log("END OF PROCESS");
     }
   },
   checkTrackedEntityInstance: function(clientObj) {
@@ -233,31 +239,36 @@ var ProcessingImport = {
 
     var clientCUIC = clientObj[window.config.ressources.CUIC.header];
     var clientOrgUnit = clientObj[window.config.dataPoints["enrollement"].orgUnit];
+
+    updates = ToolsImport.logger(updates,"---------------------------------------------");
+
     updates = ToolsImport.logger(updates,"Row: " + clientObj["rowNum"] + "/" + window.wbk.thisRowNum + " - Client creation: [ClientCUIC: " + clientCUIC + " - Council: " + clientOrgUnit + "]");
 
-    Tools.getTrackedEntityInstance("EQ",clientObj,
-      ProcessingImport.newTrackedEntityInstance,
-      ProcessingImport.existingTrackedEntityInstance
-    );
+    Tools.getTrackedEntityInstance("EQ",clientObj, ProcessingImport.newTrackedEntityInstance, ProcessingImport.existingTrackedEntityInstance);
 
   },
   existingTrackedEntityInstance: function(clientObj,response) {
     console.log("fun ProcessingImport.existingTrackedEntityInstance - params: clientObj: ", clientObj, ", response: ", response);
 
-    updates = ToolsImport.logger(updates,"WARNING: One or more client(s) with the same CUIC already exist");
+    updates = ToolsImport.logger(updates,"Row: " + clientObj["rowNum"] + "/" + window.wbk.thisRowNum + " - WARNING: One or more client(s) with the same CUIC already exist");
 
     var toCheckList = {};
 
+    /*
+    Create object for TEI duplicate check from config:
+    {...
+    dhis_uid_of_datapoint: xls_header_of_datapoint
+    ...}
+    */
     Object.keys(window.config.duplicates).forEach(function(key) {
       if (window.config.duplicates[key].toCheck) {
         toCheckList[window.config.duplicates[key].uid] = window.config.duplicates[key].header;
       }
     });
 
-    console.log(toCheckList);
     var matched_tei = undefined;
 
-
+    // Browse TEIs to check if any matches criteria for duplicate
     response.trackedEntityInstances.forEach(function(tei) {
       var toCheckValue = true;
       tei.attributes.forEach(function(tea) {
@@ -268,29 +279,27 @@ var ProcessingImport = {
           toCheckValue = toCheckValue && (cond1 == cond2);
         }
       });
-      console.log("toCheckValue" , toCheckValue);
       if (toCheckValue) {
         matched_tei = tei;
       }
     });
 
     if (matched_tei) {
-      updates = ToolsImport.logger(updates,"WARNING: One or more new event(s) will be added to the client with UID: " + matched_tei.trackedEntityInstance);
+      updates = ToolsImport.logger(updates,"Row: " + clientObj["rowNum"] + "/" + window.wbk.thisRowNum + " - WARNING: One or more new event(s) will be added to the client with UID: " + matched_tei.trackedEntityInstance);
 
       var countryUID = window.config.organisationUnits.adm0.LS.uid;
       var data = null;
-      var url = "http://localhost:8989/dhis/api/25/enrollments?trackedEntityInstance=" +  matched_tei.trackedEntityInstance + "&ou=" + countryUID + "&ouMode=DESCENDANTS&skipPaging=true";
+      var url = window.dhisUrl + "api/25/enrollments?trackedEntityInstance=" +  matched_tei.trackedEntityInstance + "&ou=" + countryUID + "&ouMode=DESCENDANTS&skipPaging=true";
       var xhr = new XMLHttpRequest();
       xhr.withCredentials = true;
 
       xhr.addEventListener("readystatechange", function () {
         if (this.readyState === 4) {
-          console.log(JSON.parse(this.responseText));
           if (JSON.parse(this.responseText).enrollments.length == 0) {
-            updates = ToolsImport.logger(updates,"ERROR: This client do not have any enrollment! Please proceed to manual review! This record will be skipped.");
+            updates = ToolsImport.logger(updates,"Row: " + clientObj["rowNum"] + "/" + window.wbk.thisRowNum + " - ERROR: [ClientUIC: " + clientObj[window.config.ressources.CUIC.header] + " - This client do not have any enrollment! Please proceed to manual review! This record will be skipped]");
             ProcessingImport.iterateOverRows(clientObj["rowNum"] + 1);
           } else {
-            ProcessingImport.newEvent(clientObj,matched_tei.trackedEntityInstance,JSON.parse(this.responseText).enrollments[0].enrollment,window.config.ressources.stagesNames);
+            ProcessingImport.checkEvent([clientObj,matched_tei.trackedEntityInstance,JSON.parse(this.responseText).enrollments[0].enrollment,JSON.parse(JSON.stringify(window.config.ressources.stageNames))],false);
           }
         }
       });
@@ -298,9 +307,8 @@ var ProcessingImport = {
       xhr.open("GET", url);
       xhr.send(data);
 
-
     } else {
-      updates = ToolsImport.logger(updates,"WARNING: The mandatory parameters (duplicates object in config) are not met with any of the existing clients, a new client will be created");
+      updates = ToolsImport.logger(updates,"Row: " + clientObj["rowNum"] + "/" + window.wbk.thisRowNum + " - WARNING: The mandatory parameters (duplicates object in config) are not met with any of the existing clients, a new client will be created with the same CUIC");
       ProcessingImport.newTrackedEntityInstance(clientObj,null);
     }
 
@@ -311,8 +319,17 @@ var ProcessingImport = {
     var url = window.dhisUrl + "api/trackedEntityInstances";
 
     var clientOrgUnit = clientObj[window.config.dataPoints["enrollement"].orgUnit];
-    var attributes = ToolsImport.getElements("enrollement",clientObj,"attribute");
 
+    var temp = ToolsImport.getElements("enrollement",clientObj,"attribute");
+    var attributes = temp[0];
+    var errors = temp[1];
+
+    if (errors.length > 0) {
+      errors.forEach(function(error) {
+        console.log("fun ProcessingImport.newTrackedEntityInstance - xlsToDhis/attributes: ", error);
+        updates = ToolsImport.logger(updates,"Row: " + clientObj["rowNum"] + "/" + window.wbk.thisRowNum + " - ERROR: [ClientUIC: " + clientObj[window.config.ressources.CUIC.header] + " - " + error[1] + " " + error[3] + " does not exist for " + error[2] + " datapoint]");
+      });
+    }
 
     var payload = {
       "trackedEntity": window.config.ressources.uidTrackedEntity,
@@ -351,7 +368,7 @@ var ProcessingImport = {
 
     var payload = {"enrollments":[ {
         "trackedEntityInstance": clientUID,
-        "orgUnit": clientOrgUnit,
+        "orgUnit": window.config.organisationUnits.adm2[clientOrgUnit].uid,
         "program": window.config.ressources.uidProgram,
         "enrollmentDate": enrollmentDate,
         "incidentDate": enrollmentDate,
@@ -369,7 +386,7 @@ var ProcessingImport = {
         console.log("fun ProcessingImport.newEnrollment - response: ", JSON.parse(this.responseText));
         updates = ToolsImport.logger(updates,"Row: " + clientObj["rowNum"] + "/" + window.wbk.thisRowNum + " - Client enrolled: [ClientUID: " + clientUID + " - EnrollmentUID: " + enrollentUID + "]");
 
-        ProcessingImport.newEvent(clientObj,clientUID,enrollentUID,window.config.ressources.stagesNames);
+        ProcessingImport.checkEvent([clientObj,clientUID,enrollentUID,JSON.parse(JSON.stringify(window.config.ressources.stageNames))],false);
 
       }
     });
@@ -379,136 +396,191 @@ var ProcessingImport = {
     xhr.send(JSON.stringify(payload));
 
   },
-  newEvent: function(clientObj,clientUID,enrollentUID,programStageList) {
-    console.log("fun ProcessingImport.newEvent - params: clientObj: ", clientObj, ", clientUID: ", clientUID, ", enrollentUID: ", enrollentUID, ", programStageList: ", programStageList);
+  checkEvent: function(arrayArgs,lastEventWasDuplicate) {
 
+    var clientObj = arrayArgs[0];
+    var clientUID = arrayArgs[1];
+    var enrollentUID = arrayArgs[2];
+    var programStageList = arrayArgs[3];
+    console.log("fun ProcessingImport.checkEvent - params: clientObj: ", clientObj, ", clientUID: ", clientUID, ", enrollentUID: ", enrollentUID, ", programStageList: ", programStageList, ", lastEventWasDuplicate: ", lastEventWasDuplicate);
+
+    if (lastEventWasDuplicate) {
+      updates = ToolsImport.logger(updates,"Row: " + clientObj["rowNum"] + "/" + window.wbk.thisRowNum + " - ERROR: [ClientUIC: " + clientObj[window.config.ressources.CUIC.header] + " - This event could not be created, an event of the SAME TYPE already existed for the SAME DATE]");
+
+    }
+    // Check if we still have stages to import
     if (programStageList.length == 0) {
 
-      ProcessingImport.iterateOverRows(clientObj["rowNum"] + 1,clientObj["rowMax"]);
+      ProcessingImport.iterateOverRows(clientObj["rowNum"] + 1);
+
     } else {
 
-      var url = window.dhisUrl + "api/events";
-
       var programStageName = programStageList.shift();
+
+      updates = ToolsImport.logger(updates,"Row: " + clientObj["rowNum"] + "/" + window.wbk.thisRowNum + " - Event creation: [Stage name: " + programStageName + "]");
+
+
+      // Check if we already have a existing event for the same date
       var programStage = window.config.dataPoints[programStageName].uid;
-      var clientOrgUnit = clientObj[window.config.dataPoints["enrollement"].orgUnit];
+      var eventDate = ToolsImport.excelDateToJSDate(clientObj[window.config.dataPoints[programStageName].date]); //OK
 
-      var dataValues = ToolsImport.getElements(programStageName,clientObj,'dataElement');
+      var eventAlreadyExists = ToolsImport.checkEvents(clientUID,eventDate,programStage,
+        ProcessingImport.checkEvent,[clientObj,clientUID,enrollentUID,programStageList],
+        ProcessingImport.newEvent,[clientObj,clientUID,enrollentUID,programStageList.concat(programStageName)]);
+    }
 
-      console.log(dataValues);
+  },
+  newEvent: function(arrayArgs, lastEventWasDuplicate) {
+    var clientObj = arrayArgs[0];
+    var clientUID = arrayArgs[1];
+    var enrollentUID = arrayArgs[2];
+    var programStageList = arrayArgs[3];
 
-      if (dataValues.length == 0) {
+    console.log("fun ProcessingImport.newEvent - params: clientObj: ", clientObj, ", clientUID: ", clientUID, ", enrollentUID: ", enrollentUID, ", programStageList: ", programStageList, ", lastEventWasDuplicate: ", lastEventWasDuplicate);
 
-        ProcessingImport.newEvent(clientObj,clientUID,enrollentUID,programStageList);
+    var programStageName = programStageList.shift();
 
-      } else {
+    var programStage = window.config.dataPoints[programStageName].uid;
+    var eventDate = ToolsImport.excelDateToJSDate(clientObj[window.config.dataPoints[programStageName].date]); //OK
 
-        var eventDate = ToolsImport.excelDateToJSDate(clientObj[window.config.dataPoints[programStageName].date]); //OK
-        var workerID = clientObj[window.config.dataPoints[programStageName].attribution]; //OK
+    // Import dataElements
+    var url = window.dhisUrl + "api/events";
 
-        // TODO MANAGE CASE WHEN COUNSELLOR NOT SETUP
+    var clientOrgUnit = clientObj[window.config.dataPoints[programStageName].orgUnit];
+
+    var temp = ToolsImport.getElements(programStageName,clientObj,'dataElement');
+    var dataElements = temp[0];
+    var errors = temp[1];
+
+    if (errors.length > 0) {
+      errors.forEach(function(error) {
+        console.log("fun ProcessingImport.newEvent - xlsToDhis/dataElement: ", error);
+        updates = ToolsImport.logger(updates,"Row: " + clientObj["rowNum"] + "/" + window.wbk.thisRowNum + " - ERROR: [ClientUIC: " + clientObj[window.config.ressources.CUIC.header] + " - " + error.value[1] + " " + error.value[3] + " does not exist for " + error.value[2] + " datapoint]");
+      });
+    }
+
+    // Check if we have dataElements
+    if (dataElements.length == 0) {
+
+      updates = ToolsImport.logger(updates,"Row: " + clientObj["rowNum"] + "/" + window.wbk.thisRowNum + " - WARNING: Event creation: [ClientUID: " + clientUID + " - EventName: " + programStageName +" - no dataElements to import]");
+
+
+      ProcessingImport.checkEvent([clientObj,clientUID,enrollentUID,programStageList],lastEventWasDuplicate);
+
+    } else {
+
+      var workerID = clientObj[window.config.dataPoints[programStageName].attribution]; //OK
+
+      if (window.config.psiWorkers[workerID]) {
         var attributeCategoryOptions = window.config.psiWorkers[workerID].uid; //OK - Configure
+      }else {
+        updates = ToolsImport.logger(updates,"Row: " + clientObj["rowNum"] + "/" + window.wbk.thisRowNum + " - ERROR: [ClientUIC: " + clientObj[window.config.ressources.CUIC.header] + " - psiWorker ID: " + workerID + " is not setup in the system you will have to do the setup and try re-import this record]");
+      }
 
-        var payload = {"events":[ {
-          "trackedEntityInstance": clientUID, //OK
-          "program": window.config.ressources.uidProgram, //OK
-          "programStage": programStage, //OK
-          "enrollment": enrollentUID, //OK
-          "orgUnit": window.config.organisationUnits.adm2[clientOrgUnit].uid, //OK
-          "eventDate": eventDate, //OK
-          "status": "ACTIVE", // ?
-          "attributeCategoryOptions": attributeCategoryOptions, //OK - Configure
-          "dataValues": dataValues, //OK - Configure
-        } ]};
+      var payload = {
+        "events":
+          [ {
+            "trackedEntityInstance": clientUID, //OK
+            "program": window.config.ressources.uidProgram, //OK
+            "programStage": programStage, //OK
+            "enrollment": enrollentUID, //OK
+            "orgUnit": window.config.organisationUnits.adm2[clientOrgUnit].uid, //OK
+            "eventDate": eventDate, //OK
+            "status": "ACTIVE", // ?
+            "attributeCategoryOptions": attributeCategoryOptions, //OK - Configure
+            "dataValues": dataElements, //OK - Configure
+          } ]
+        };
 
-        console.log("fun ProcessingImport.newEvent - payload: ", payload);
+      console.log("fun ProcessingImport.newEvent - payload: ", payload);
 
-        var xhr = new XMLHttpRequest();
-        xhr.withCredentials = true;
+      var xhr = new XMLHttpRequest();
+      xhr.withCredentials = true;
 
-        /*
-        xhr.addEventListener("readystatechange", function () {
-          if (this.readyState === 4) {
-            var clientCUIC = clientObj["#attr+client+id+cuic"];
-            var clientOldID = clientObj["#attr+client+id+snold"];
-            var eventUID = JSON.parse(this.responseText).response.importSummaries[0].reference;
-            console.log("fun ProcessingImport.newEvent - response/dataElements: ", JSON.parse(this.responseText));
-            updates = ToolsImport.logger(updates,"Row: " + clientObj["rowNum"] + "/" + clientObj["rowMax"] + " - Event created: [ClientUID: " + clientUID + " - EventUID: " + eventUID + " - EventName: " +programStageName +" - dataValues imported]");
+      xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === 4) {
 
-            var attributes = ToolsImport.getElements(programStageName,clientObj,"attribute");
+          var eventUID = JSON.parse(this.responseText).response.importSummaries[0].reference;
 
-            if (true) {
-            //if (attributes.length == 0) {
+          console.log("fun ProcessingImport.newEvent - response/dataElements: ", JSON.parse(this.responseText));
 
-              ProcessingImport.newEvent(clientObj,clientUID,enrollentUID,programStageList);
-            } else {
+          updates = ToolsImport.logger(updates,"Row: " + clientObj["rowNum"] + "/" + window.wbk.thisRowNum + " - Event created: [ClientUID: " + clientUID + " - EventUID: " + eventUID + " - EventName: " + programStageName +" - dataElements imported]");
 
-              var payload = null;
-              var url = window.dhisUrl + "trackedEntityInstances.json?filter=" + window.OldID + ":EQ:"+ clientOldID +"&ou=vJNI6blhosr&ouMode=DESCENDANTS&trackedEntity=MCPQUTHX1Ze&skipPaging=true";
-              var xhr = new XMLHttpRequest();
-              xhr.withCredentials = true;
-              xhr.open("GET", url, true);
-            	xhr.onreadystatechange = function() {
-            		if (this.readyState == 4) {
-                    var response = JSON.parse(this.responseText);
-                    if (response.trackedEntityInstances.length == 0) {
+          // Import attributes
+          var temp = ToolsImport.getElements(programStageName,clientObj,"attribute");
+          var attributes = temp[0];
+          var errors = temp[1];
 
-                      console.log(response);
+          if (errors.length > 0) {
+            errors.forEach(function(error) {
+              console.log("fun ProcessingImport.newEvent - xlsToDhis/attributes: ", error);
+              updates = ToolsImport.logger(updates,"Row: " + clientObj["rowNum"] + "/" + window.wbk.thisRowNum + " - ERROR: [ClientUIC: " + clientObj[window.config.ressources.CUIC.header] + " - " + error[1] + " " + error[3] + " does not exist for " + error[2] + " datapoint]");
+            });
+          }
 
-                      var url = window.dhisUrl + "trackedEntityInstances";
-                      var trackedEntity = "MCPQUTHX1Ze";
-                      var orgUnit = window.config.organisationUnits["#ou+adm2"][clientOU].uid;
-                      var program = "KDgzpKX3h2S";
-                      var enrollmentDate = ToolsImport.excelDateToJSDate(clientObj["#date+enrollment"]);
+          // Check if we have attributes
+          if (attributes.length == 0) {
 
-                      var payload = {
-                        "trackedEntity": trackedEntity,
-                        "trackedEntityInstance": clientUID,
-                        "orgUnit": orgUnit,
-                        "attributes": attributes,
-                      };
+            updates = ToolsImport.logger(updates,"Row: " + clientObj["rowNum"] + "/" + window.wbk.thisRowNum + " - WARNING: Event creation: [ClientUID: " + clientUID + " - EventName: " + programStageName +" - no attributes to import]");
 
-                      var xhr = new XMLHttpRequest();
-                      xhr.withCredentials = true;
 
-                      xhr.addEventListener("readystatechange", function () {
-                        if (this.readyState === 4) {
-                          var clientCUIC = clientObj["#attr+client+id+cuic"];
-                          var clientOldID = clientObj["#attr+client+id+snold"];
-                          var clientOU = clientObj["#ou+adm2"];
-                          //var clientUID = JSON.parse(this.responseText).response.reference;
-                          console.log("fun ProcessingImport.newEvent - response/attributes: ", JSON.parse(this.responseText));
-                          updates = ToolsImport.logger(updates,"" + clientObj["rowNum"] + "/" + clientObj["rowMax"] + " - Event created: [ClientUID: " + clientUID + " - EventUID: " + eventUID + " - EventName: " +programStageName +" - attributes imported]");
+            ProcessingImport.checkEvent([clientObj,clientUID,enrollentUID,programStageList],lastEventWasDuplicate);
 
-                          ProcessingImport.newEvent(clientObj,clientUID,enrollentUID,programStageList);
-                        }
-                      });
+          } else {
 
-                      xhr.open("POST", url);
-                      xhr.setRequestHeader("content-type", "application/json");
-                      //console.log(JSON.stringify(payload));
-                      xhr.send(JSON.stringify(payload));
-                    }else {
-                      console.log("fun ProcessingImport.newEvent - ERROR");
+            var payload = null;
+            var url = window.dhisUrl + "api/25/trackedEntityInstances/" + clientUID + ".json";
+
+            var xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
+          	xhr.onreadystatechange = function() {
+
+          		if (this.readyState == 4) {
+
+                  var response = JSON.parse(this.responseText);
+
+                  // Check if we already have trackedEntityInstances
+                  if (response.attributes.length > 0) {
+                    response.attributes = response.attributes.concat(attributes);
+                  }
+
+                  var url = window.dhisUrl + "api/25/trackedEntityInstances/" + clientUID;
+
+                  var payload = response;
+
+                  var xhr = new XMLHttpRequest();
+                  xhr.withCredentials = true;
+
+                  xhr.addEventListener("readystatechange", function() {
+                    if (this.readyState === 4) {
+
+                      console.log("fun ProcessingImport.newEvent - response/attributes: ", JSON.parse(this.responseText));
+                      updates = ToolsImport.logger(updates,"Row: " + clientObj["rowNum"] + "/" + window.wbk.thisRowNum + " - Event created: [ClientUID: " + clientUID + " - EventName: " + programStageName +" - attributes imported]");
+
+                      ProcessingImport.checkEvent([clientObj,clientUID,enrollentUID,programStageList],lastEventWasDuplicate);
                     }
-            		}
-            	};
+                  });
+
+                  xhr.open("PUT", url);
+                  xhr.setRequestHeader("content-type", "application/json");
+                  xhr.send(JSON.stringify(payload));
+
+                }
+          		}
+
+              xhr.open("GET", url, true);
               xhr.send(payload);
-
-
             }
+
+
           }
         });
 
         xhr.open("POST", url);
         xhr.setRequestHeader("content-type", "application/json");
-        //console.log(JSON.stringify(payload));
         xhr.send(JSON.stringify(payload));
-        */
       }
     }
-
-  },
 };
 
 export default ProcessingImport;

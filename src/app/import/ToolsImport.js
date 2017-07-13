@@ -57,7 +57,6 @@ var ToolsImport = {
 
     } else {
       var dateArray = serial.split("/");
-      console.log(dateArray);
       if (dateArray.length == 3 && dateArray[0].length == 2 && dateArray[1].length == 2 && dateArray[2].length == 4) {
         return "" + dateArray[2] + "-" + dateArray[1] + "-" + dateArray[0];
       }else {
@@ -66,7 +65,7 @@ var ToolsImport = {
     }
   },
   getElement: function(element,clientObj,key) {
-    console.log("fun ToolsImport.getElement - params: element: ", element , ", clientObj: ", clientObj , ", key: ", key);
+    //console.log("fun ToolsImport.getElement - params: element: ", element , ", clientObj: ", clientObj , ", key: ", key);
     //console.log("fun ToolsImport.getElements - header: " + key + " - valueType: " + element.valueType + " -  value: " + clientObj[key] + " -  uid: " + element.uid);
 
     var temp_value;
@@ -76,13 +75,29 @@ var ToolsImport = {
     }else if (element.valueType == "DATE") { //OK
       temp_value = ToolsImport.excelDateToJSDate(clientObj[key]);
     }else if (element.valueType == "OPTIONSET") { //OK
-      temp_value = element.optionSet[clientObj[key]].codeDhis;
+      if (element.optionSet[clientObj[key]]) {
+        temp_value = element.optionSet[clientObj[key]].codeDhis;
+      }else {
+        temp_value = ["ERROR", element.valueType, key, clientObj[key]];
+      }
     }else if (element.valueType == "ADM1") { //OK
-      temp_value = window.config.organisationUnits.adm1[clientObj[key]].optionSet;
+      if (window.config.organisationUnits.adm1[clientObj[key]]) {
+        temp_value = window.config.organisationUnits.adm1[clientObj[key]].optionSet;
+      }else {
+        temp_value = ["ERROR", element.valueType, key, clientObj[key]];
+      }
     }else if (element.valueType == "ADM2") { //OK
-      temp_value = window.config.organisationUnits.adm2[clientObj[key]].optionSet;
+      if (window.config.organisationUnits.adm2[clientObj[key]]) {
+        temp_value = window.config.organisationUnits.adm2[clientObj[key]].optionSet;
+      }else {
+        temp_value = ["ERROR", element.valueType, key, clientObj[key]];
+      }
     }else if (element.valueType == "ADM3") { //To configure
-      temp_value = window.config.organisationUnits.adm3[clientObj[key]].optionSet;
+      if (window.config.organisationUnits.adm3[clientObj[key]]) {
+        temp_value = window.config.organisationUnits.adm3[clientObj[key]].optionSet;
+      }else {
+        temp_value = ["ERROR", element.valueType, key, clientObj[key]];
+      }
     }else if (element.valueType == "BOOLEAN") { //OK
       if(clientObj[key] == "Yes") {
         temp_value = "true";
@@ -100,14 +115,15 @@ var ToolsImport = {
     }else if (element.valueType == "INTEGER") {
       temp_value = clientObj[key];
     }else { //OK
-      console.log("fun ToolsImport.getElement - ERROR: Import of dataPoints of type: " + element.valueType + " - " + key + " is not currenlty supported, check the configuration");
+      temp_value = ["ERROR", element.valueType, key, clientObj[key]];
     }
     return temp_value;
   },
   getElements: function(stage,clientObj,elementType) {
-    console.log("fun ToolsImport.getElements - params: stage: ", stage , ", clientObj: ", clientObj, ", elementType: ", elementType);
+    //console.log("fun ToolsImport.getElements - params: stage: ", stage , ", clientObj: ", clientObj, ", elementType: ", elementType);
 
     var elements = [];
+    var errors = [];
     if (window.config.dataPoints[stage][elementType + "s"]) {
       var clientKeys = Object.keys(clientObj);
       clientKeys.forEach(function(key) {
@@ -118,14 +134,49 @@ var ToolsImport = {
           temp[elementType] = element.uid;
           temp["value"] = ToolsImport.getElement(element,clientObj,key);
 
-          elements.push(temp);
+          if (temp["value"].length > 0 && temp["value"][0] == "ERROR") {
+            errors.push(temp);
+          }else {
+            elements.push(temp);
+          }
         }
       });
     }
 
-    console.log("fun ToolsImport.getElements - elements: ", elements);
-    return elements;
+    console.log("fun ToolsImport.getElements - elements: ", elements, "errors: ", errors);
+    return [elements,errors];
   },
+  checkEvents(teiUID,eventDate,programStageUID,callback_true,args_true,callback_false,args_false){ //WIP
+    console.log("fun ToolsImport.checkEvents - params: teiUID: ", teiUID , ", eventDate: ", eventDate, ", programStageUID: ", programStageUID);
+
+    var countryUID = window.config.organisationUnits.adm0.LS.uid;
+
+    var data = null;
+    var url = window.dhisUrl + "api/events?trackedEntityInstance=" + teiUID + "&ou=" + countryUID + "&ouMode=DESCENDANTS&skipPaging=true"
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+
+    xhr.addEventListener("readystatechange", function () {
+      if (this.readyState === 4) {
+        var test_bool = false;
+        JSON.parse(this.responseText).events.forEach(function(event) {
+          //console.log("fun ToolsImport.checkEvents - event: eventDate: ", event.eventDate.substr(0,10), ", programStage: ", event.programStage);
+
+          if(event.eventDate.substr(0,10) == eventDate && event.programStage == programStageUID){
+            test_bool = true;
+          }
+        });
+        if (test_bool) {
+          callback_true(args_true,test_bool);
+        } else {
+          callback_false(args_false,test_bool);
+        }
+      }
+    });
+
+    xhr.open("GET", url);
+    xhr.send(data);
+  }
 };
 
 export default ToolsImport;

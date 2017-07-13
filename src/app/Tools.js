@@ -20,12 +20,10 @@ var Tools = {
 
     if (window.config.ressources.CUIC_old) {
 
-      updates = ToolsImport.logger(updates,"ERROR: Use of old CUIC is not currenlty supported.");
-      updates = ToolsImport.logger(updates,"---------------------------------------------");
+      console.log("fun Tools.getTrackedEntityInstance - ERROR: Old CUIC is not currenlty supported");
 
     }else {
       var url = window.dhisUrl + "api/trackedEntityInstances.json?filter=" + clientCUICUID + ":" + op + ":"+ clientCUIC +"&ou=" + countryUID + "&ouMode=DESCENDANTS&trackedEntity=" + trackedEntityUID + "&skipPaging=true";
-      console.log(url);
 
       var xhr = new XMLHttpRequest();
       xhr.withCredentials = true;
@@ -50,13 +48,13 @@ var Tools = {
     //var e = "production";
     window.e = undefined;
     if (window.e) {
-      console.log('prod_path');
+      console.log('fun Tools.getUrl - prod_path');
       window.dhisUrl = window.location.href.split('apps/')[0];
-      console.log("window.dhisUrl: ", window.dhisUrl);
+      console.log("fun Tools.getUrl - window.dhisUrl: ", window.dhisUrl);
     } else {
-      console.log('dev_path');
+      console.log('fun Tools.getUrl - dev_path');
       window.dhisUrl = "http://localhost:8989/dhis/";
-      console.log("window.dhisUrl: ", window.dhisUrl);
+      console.log("fun Tools.getUrl - window.dhisUrl: ", window.dhisUrl);
     }
   },
   getList: function(fun_success,fun_failure) {
@@ -77,8 +75,6 @@ var Tools = {
         window.list_new = window.list;
 
         window.config = JSON.parse(window.list);
-
-        console.log("window.config", window.config);
 
         var is_error = JSON.parse(window.list);
         if (is_error.status == "ERROR") {
@@ -109,7 +105,7 @@ var Tools = {
       }
       xhr.send();
     }else {
-      console.log("window.config", window.config);
+      console.log("fun Tools.getList - window.config", window.config);
     }
 
   },
