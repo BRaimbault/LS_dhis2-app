@@ -78,11 +78,12 @@ var ProcessingImport = {
     Tools.getUrl();
     Tools.getList();
 
-    if(window.e){
+    //if(window.e){
+    if(true){
       updates = ToolsImport.logger(updates,"---------------------------------------------");
       updates = ToolsImport.logger(updates,"File selected: " + e.target.files[0].name);
       updates = ToolsImport.logger(updates,"ProcessingImport started");
-      ProcessingImport.readFile(window.e);
+      ProcessingImport.readFile(e);
     }else{
       setTimeout(function () {
         updates = ToolsImport.logger(updates,"---------------------------------------------");
@@ -120,6 +121,7 @@ var ProcessingImport = {
     xhr.send();
   },
   readFile: function(e) {
+    console.log("fun ProcessingImport.readFile: e - ", e);
     updates = ToolsImport.logger(updates,"Loading file in cache");
     var files = e.target.files;
     var f = files[0];
@@ -426,7 +428,7 @@ var ProcessingImport = {
 
       var eventAlreadyExists = ToolsImport.checkEvents(clientUID,eventDate,programStage,
         ProcessingImport.checkEvent,[clientObj,clientUID,enrollentUID,programStageList],
-        ProcessingImport.newEvent,[clientObj,clientUID,enrollentUID,programStageList.concat(programStageName)]);
+        ProcessingImport.newEvent,[clientObj,clientUID,enrollentUID,[programStageName].concat(programStageList)]);
     }
 
   },
@@ -486,7 +488,7 @@ var ProcessingImport = {
             "enrollment": enrollentUID, //OK
             "orgUnit": window.config.organisationUnits.adm2[clientOrgUnit].uid, //OK
             "eventDate": eventDate, //OK
-            "status": "ACTIVE", // ?
+            "status": "COMPLETED", // OK
             "attributeCategoryOptions": attributeCategoryOptions, //OK - Configure
             "dataValues": dataElements, //OK - Configure
           } ]
@@ -571,7 +573,6 @@ var ProcessingImport = {
               xhr.open("GET", url, true);
               xhr.send(payload);
             }
-
 
           }
         });

@@ -81,6 +81,4 @@ var App = React.createClass({
   }
 });
 
-//ReactDOM.render(<App sectionKey={sideBarSections[0].key}/>, document.getElementById('app'));
-
 export default App;

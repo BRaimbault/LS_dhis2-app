@@ -65,7 +65,8 @@ var Import = React.createClass({
     Tools.getList();
   },
   componentDidMount(){
-    if(!window.e){
+    //if(!window.e){
+    if(!true){
       ProcessingImport.start();
     };
   }

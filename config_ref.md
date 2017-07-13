@@ -15,7 +15,18 @@ Date: 13/07/2017
 
 ````
 {
-    "duplicates": {                                        // To identify duplicate clients
+  "exports": {
+      "Testing": {                                         // Configuration exports from of 1st stage
+          "url_lastMonth":  *DHIS URL*,                    // 1st button
+          "url_lastWeek":   *DHIS URL*,                    // 2nd button
+          "uid_table":      *DHIS UID*                     // 3rd button
+      },
+      "ART Referral - Opening": {                          // Configuration exports from of 2nd stage
+          ...
+      },
+      ...                                                  // Configuration exports from of more stages
+  },
+  "duplicates": {                                          // To identify duplicate clients
       *ANY NAME*: {                                        // 1st data point
           "toCheck":  *BOOLEAN*,                           // Confirm that this data point is checked
           "header":   *XLS HEADER*,
@@ -34,7 +45,7 @@ Date: 13/07/2017
             "uid":            *DHIS UID*
         },
         "CUIC_old":         null,                          // Not available
-        "stagesNames": ["Testing","ART Referral - Opening",...]
+        "stageNames": ["Testing","ART Referral - Opening",...]
     },
     "dataPoints": {                                        // Data points configuration
         "enrollement": {                                   // Configuration of enrollment "pre-stage"
@@ -126,7 +137,29 @@ Date: 13/07/2017
 
 ````
 {
-    "duplicates": {
+    "exports": {
+      "Testing": {
+          "url_lastMonth": "api/analytics/events/query/KDgzpKX3h2S.xls?stage=OSpZnLBMVhr&dimension=pe:LAST_MONTH&dimension=ou:vJNI6blhosr&dimension=zRA08XEYiSF&dimension=Nz4w5ctIBLO&dimension=wSp6Q7QDMsk&dimension=u57uh7lHwF8&dimension=mW2l3T2zL0N&dimension=mUxDHgywnn2&dimension=vTPYC9BXPNn&dimension=CCVO6BZMrnp&dimension=Y35TizULMzg&dimension=kdzfhXK71re&dimension=Fty7JMtC7mX&dimension=vD0qayOxs64&dimension=tzZCy78mWEG&dimension=gYiUqfKwktq&dimension=kpMMzIM3t5I&dimension=fa7lRYdWJfl&dimension=PWy9kmp4Pmb&dimension=XTWSNIlxkEj&dimension=PyfoYtwNGrI",
+          "url_lastWeek": "api/analytics/events/query/KDgzpKX3h2S.xls?stage=OSpZnLBMVhr&dimension=pe:LAST_WEEK&dimension=ou:vJNI6blhosr&dimension=zRA08XEYiSF&dimension=Nz4w5ctIBLO&dimension=wSp6Q7QDMsk&dimension=u57uh7lHwF8&dimension=mW2l3T2zL0N&dimension=mUxDHgywnn2&dimension=vTPYC9BXPNn&dimension=CCVO6BZMrnp&dimension=Y35TizULMzg&dimension=kdzfhXK71re&dimension=Fty7JMtC7mX&dimension=vD0qayOxs64&dimension=tzZCy78mWEG&dimension=gYiUqfKwktq&dimension=kpMMzIM3t5I&dimension=fa7lRYdWJfl&dimension=PWy9kmp4Pmb&dimension=XTWSNIlxkEj&dimension=PyfoYtwNGrI",
+          "uid_table": "UngpAAZjEmt"
+      },
+      "ART Referral - Opening": {
+          "url_lastMonth": "",
+          "url_lastWeek": "",
+          "uid_table": ""
+      },
+      "ART Referral - Closure": {
+          "url_lastMonth": "",
+          "url_lastWeek": "",
+          "uid_table": ""
+      },
+      "Contact Log": {
+          "url_lastMonth": "",
+          "url_lastWeek": "",
+          "uid_table": ""
+      }
+  },
+  "duplicates": {
         "CUIC": {
             "toCheck": true,
             "header": "UIC",
@@ -162,14 +195,14 @@ Date: 13/07/2017
         "importMock": "m6399KcahUP",
         "importSheet": null,
         "importHXL": false,
-        "uidTrackedEntity": "MCPQUTHX1Ze",
+        "uidTrackedEntity": "XV3kldsZq0H",
         "uidProgram": "KDgzpKX3h2S",
         "CUIC": {
             "header": "UIC",
             "uid": "rw3W9pDCPb2"
         },
         "CUIC_old": null,
-        "stagesNames": ["Testing","ART Referral - Opening"]
+        "stageNames": ["Testing","ART Referral - Opening"]
     },
     "dataPoints":{
         "enrollement": {
@@ -388,6 +421,7 @@ Date: 13/07/2017
             "uid":          "lVglvBnE3TY",
             "attribution":  "Counselor_Code",
             "date":         "DateOfTestingToday",
+            "orgUnit":      "Council",
             "attributes":   null,
             "dataElements": {
                 "Age": {
@@ -922,6 +956,7 @@ Date: 13/07/2017
             "uid":          "OSpZnLBMVhr",
             "attribution":  "Counselor_Code",
             "date":         "DateOfTestingToday",
+            "orgUnit":      "Council",
             "attributes":   {
                 "LinkageStatus": {
                     "nameDhis": "LS - ART Referral - Linkage status",
@@ -960,38 +995,14 @@ Date: 13/07/2017
     "psiWorkers": {
       "url": "categoryOptionGroups?fields=name,categoryOptions[name,code,id]",
       "categroyId": "qVl8p3w3fI5",
-      "TES701": {
-         "name": "LS - TES701 - Counsellor1 Team1",
-         "uid": "ROfMKufLAPd"
-       },
-       "TES702": {
-         "name": "LS - TES702 - Counsellor2 Team1",
-         "uid": "D9S9oEGDpGX"
-       },
-       "TES703": {
-         "name": "LS - TES703 - Counsellor3 Team2",
-         "uid": "l3en25Gvjsr"
-       },
-       "TES704": {
-         "name": "LS - TES704 - Counsellor4 Team2",
-         "uid": "u0y3yLybcKN"
-       },
-       "TES706": {
-         "name": "LS - TES706 - Counsellor6 Team3",
-         "uid": "eqgmE4s0Twy"
-       },
-       "TES705": {
-         "name": "LS - TES705 - Counsellor5 Team3",
-         "uid": "dTIKuHvkh8O"
-       },
-       "TES709": {
-         "name": "LS - TES709 - RefCoord2 Team4",
-         "uid": "AEEGk90PTGF"
-       },
-       "TES708": {
-         "name": "LS - TES708 - RefCoord1 Team4",
-         "uid": "zXzDPZP4tUO"
-       }
+      "TES001": {
+        "name": "LS - TES001 - Test",
+        "id": "i2gN5gAiQ59"
+      },
+      "TES002": {
+        "name": "LS - TES002 - Test",
+        "id": "wrygHPUqyZB"
+      }
     },
     "organisationUnits": {
       "url": "organisationUnits/vJNI6blhosr?fields=id,name,children[id,name,children[id,name]]&paging=false",
@@ -1532,6 +1543,700 @@ Date: 13/07/2017
            "optionSet": "LS107611",
            "parent": "LS10"
          }
+      },
+      "adm3": {
+        "Other": {
+          "optionSet": "Other",
+          "nameDhis": "Other (specify)"
+        },
+        "LS013201H01": {
+          "optionSet": "LS013201H01",
+          "nameDhis": "Domiciliary Filter Clinic"
+        },
+        "LS013201H02": {
+          "optionSet": "LS013201H02",
+          "nameDhis": "Likotsi Filter Clinic"
+        },
+        "LS013201H03": {
+          "optionSet": "LS013201H03",
+          "nameDhis": "Loretto HC"
+        },
+        "LS013201H04": {
+          "optionSet": "LS013201H04",
+          "nameDhis": "Mabote Filter Clinic"
+        },
+        "LS013201H05": {
+          "optionSet": "LS013201H05",
+          "nameDhis": "Maseru SDA HC"
+        },
+        "LS013201H06": {
+          "optionSet": "LS013201H06",
+          "nameDhis": "Qoaling Filter Clinic"
+        },
+        "LS013201H07": {
+          "optionSet": "LS013201H07",
+          "nameDhis": "Queen Mamohato Memorial Hospital"
+        },
+        "LS013201H08": {
+          "optionSet": "LS013201H08",
+          "nameDhis": "R.L.D.F HC"
+        },
+        "LS013201H09": {
+          "optionSet": "LS013201H09",
+          "nameDhis": "St. Leo HC"
+        },
+        "LS013201H10": {
+          "optionSet": "LS013201H10",
+          "nameDhis": "Thamae HC"
+        },
+        "LS013201H11": {
+          "optionSet": "LS013201H11",
+          "nameDhis": "Khubetsoana HC"
+        },
+        "LS013701H01": {
+          "optionSet": "LS013701H01",
+          "nameDhis": "Thaba Bosiu HC"
+        },
+        "LS013802H01": {
+          "optionSet": "LS013802H01",
+          "nameDhis": "Nazareth HC"
+        },
+        "LS013904H01": {
+          "optionSet": "LS013904H01",
+          "nameDhis": "Likalaneng HC"
+        },
+        "LS013904H02": {
+          "optionSet": "LS013904H02",
+          "nameDhis": "Marakabei HC"
+        },
+        "LS013904H03": {
+          "optionSet": "LS013904H03",
+          "nameDhis": "Mohale HC"
+        },
+        "LS013904H04": {
+          "optionSet": "LS013904H04",
+          "nameDhis": "St Benedict HC"
+        },
+        "LS013904H05": {
+          "optionSet": "LS013904H05",
+          "nameDhis": "St Bernard HC"
+        },
+        "LS014006H01": {
+          "optionSet": "LS014006H01",
+          "nameDhis": "St Joseph Hospital"
+        },
+        "LS014208H01": {
+          "optionSet": "LS014208H01",
+          "nameDhis": "Koro-koro HC"
+        },
+        "LS014208H02": {
+          "optionSet": "LS014208H02",
+          "nameDhis": "Mofoka HC"
+        },
+        "LS014309H01": {
+          "optionSet": "LS014309H01",
+          "nameDhis": "Matukeng HC"
+        },
+        "LS014309H02": {
+          "optionSet": "LS014309H02",
+          "nameDhis": "Paki HC"
+        },
+        "LS014309H03": {
+          "optionSet": "LS014309H03",
+          "nameDhis": "Pshatlella HC"
+        },
+        "LS014410H01": {
+          "optionSet": "LS014410H01",
+          "nameDhis": "Peter Claver HC"
+        },
+        "LS014410H02": {
+          "optionSet": "LS014410H02",
+          "nameDhis": "St Barnabas HC"
+        },
+        "LS014511H01": {
+          "optionSet": "LS014511H01",
+          "nameDhis": "Matsieng HC"
+        },
+        "LS014511H02": {
+          "optionSet": "LS014511H02",
+          "nameDhis": "Scott Hospital"
+        },
+        "LS014512H01": {
+          "optionSet": "LS014512H01",
+          "nameDhis": "Ha Tlali HC"
+        },
+        "LS014512H02": {
+          "optionSet": "LS014512H02",
+          "nameDhis": "Kena HC"
+        },
+        "LS014512H03": {
+          "optionSet": "LS014512H03",
+          "nameDhis": "Ramabanta HC"
+        },
+        "LS014512H04": {
+          "optionSet": "LS014512H04",
+          "nameDhis": "St Rodrique HC"
+        },
+        "LS014613H01": {
+          "optionSet": "LS014613H01",
+          "nameDhis": "Ha Seng HC"
+        },
+        "LS014614H01": {
+          "optionSet": "LS014614H01",
+          "nameDhis": "Semonkong HC"
+        },
+        "LS014614H02": {
+          "optionSet": "LS014614H02",
+          "nameDhis": "St Leornard HC"
+        },
+        "LS020101H01": {
+          "optionSet": "LS020101H01",
+          "nameDhis": "Boiketsiso HC"
+        },
+        "LS020101H02": {
+          "optionSet": "LS020101H02",
+          "nameDhis": "Ngoajane HC"
+        },
+        "LS020101H03": {
+          "optionSet": "LS020101H03",
+          "nameDhis": "Qholaqhoe HC"
+        },
+        "LS020204H01": {
+          "optionSet": "LS020204H01",
+          "nameDhis": "Seboche Hospital"
+        },
+        "LS020204H02": {
+          "optionSet": "LS020204H02",
+          "nameDhis": "Tsime HC"
+        },
+        "LS020305H01": {
+          "optionSet": "LS020305H01",
+          "nameDhis": "Motete HC"
+        },
+        "LS020305H02": {
+          "optionSet": "LS020305H02",
+          "nameDhis": "Muela site HC"
+        },
+        "LS020305H03": {
+          "optionSet": "LS020305H03",
+          "nameDhis": "Rampai HC"
+        },
+        "LS020305H04": {
+          "optionSet": "LS020305H04",
+          "nameDhis": "St Peters HC"
+        },
+        "LS020409H01": {
+          "optionSet": "LS020409H01",
+          "nameDhis": "Linakeng HC"
+        },
+        "LS020510H01": {
+          "optionSet": "LS020510H01",
+          "nameDhis": "Butha Buthe Hospital"
+        },
+        "LS020510H02": {
+          "optionSet": "LS020510H02",
+          "nameDhis": "St Paul HC"
+        },
+        "LS030601H01": {
+          "optionSet": "LS030601H01",
+          "nameDhis": "Mamohau Hospital"
+        },
+        "LS030601H02": {
+          "optionSet": "LS030601H02",
+          "nameDhis": "Palama HC"
+        },
+        "LS030601H03": {
+          "optionSet": "LS030601H03",
+          "nameDhis": "Sepinare HC"
+        },
+        "LS030601H04": {
+          "optionSet": "LS030601H04",
+          "nameDhis": "Seshote HC"
+        },
+        "LS030704H01": {
+          "optionSet": "LS030704H01",
+          "nameDhis": "Matlameng HC"
+        },
+        "LS030806H01": {
+          "optionSet": "LS030806H01",
+          "nameDhis": "Mositi HC"
+        },
+        "LS030806H02": {
+          "optionSet": "LS030806H02",
+          "nameDhis": "Thaba Phat?oa HC"
+        },
+        "LS030908H01": {
+          "optionSet": "LS030908H01",
+          "nameDhis": "Mahobong HC"
+        },
+        "LS030908H02": {
+          "optionSet": "LS030908H02",
+          "nameDhis": "Mahobong Holy Trinity HC"
+        },
+        "LS030908H03": {
+          "optionSet": "LS030908H03",
+          "nameDhis": "Pontmain HC"
+        },
+        "LS030908H04": {
+          "optionSet": "LS030908H04",
+          "nameDhis": "Seetsa HC"
+        },
+        "LS031010H01": {
+          "optionSet": "LS031010H01",
+          "nameDhis": "Khabo HC"
+        },
+        "LS031010H02": {
+          "optionSet": "LS031010H02",
+          "nameDhis": "St Denis HC"
+        },
+        "LS031111H01": {
+          "optionSet": "LS031111H01",
+          "nameDhis": "Emmanuel HC"
+        },
+        "LS031111H02": {
+          "optionSet": "LS031111H02",
+          "nameDhis": "Maryland HC"
+        },
+        "LS031111H03": {
+          "optionSet": "LS031111H03",
+          "nameDhis": "St Magaret HC"
+        },
+        "LS031313H01": {
+          "optionSet": "LS031313H01",
+          "nameDhis": "Louis Gerard HC"
+        },
+        "LS031313H02": {
+          "optionSet": "LS031313H02",
+          "nameDhis": "Motebang Hospital"
+        },
+        "LS031414H01": {
+          "optionSet": "LS031414H01",
+          "nameDhis": "Linotsing HC"
+        },
+        "LS031616H01": {
+          "optionSet": "LS031616H01",
+          "nameDhis": "Maputsoe Filter Clinic"
+        },
+        "LS031616H02": {
+          "optionSet": "LS031616H02",
+          "nameDhis": "Maputsoe SDA HC"
+        },
+        "LS031616H03": {
+          "optionSet": "LS031616H03",
+          "nameDhis": "St Monicas HC"
+        },
+        "LS031717H01": {
+          "optionSet": "LS031717H01",
+          "nameDhis": "Peka HC"
+        },
+        "LS031717H02": {
+          "optionSet": "LS031717H02",
+          "nameDhis": "St Anne HC"
+        },
+        "LS031717H03": {
+          "optionSet": "LS031717H03",
+          "nameDhis": "St Rose HC"
+        },
+        "LS031818H01": {
+          "optionSet": "LS031818H01",
+          "nameDhis": "Fobane HC"
+        },
+        "LS031818H02": {
+          "optionSet": "LS031818H02",
+          "nameDhis": "Little Flower HC"
+        },
+        "LS041901H01": {
+          "optionSet": "LS041901H01",
+          "nameDhis": "Mapheleng HC"
+        },
+        "LS041901H02": {
+          "optionSet": "LS041901H02",
+          "nameDhis": "Sebedia HC"
+        },
+        "LS042002H01": {
+          "optionSet": "LS042002H01",
+          "nameDhis": "Maluti Hospital"
+        },
+        "LS042002H02": {
+          "optionSet": "LS042002H02",
+          "nameDhis": "Sion HC"
+        },
+        "LS042103H01": {
+          "optionSet": "LS042103H01",
+          "nameDhis": "Immaculate Conception HC"
+        },
+        "LS042103H02": {
+          "optionSet": "LS042103H02",
+          "nameDhis": "Kolojane HC"
+        },
+        "LS042103H03": {
+          "optionSet": "LS042103H03",
+          "nameDhis": "St. Theresa HC"
+        },
+        "LS042204H01": {
+          "optionSet": "LS042204H01",
+          "nameDhis": "Pilot HC"
+        },
+        "LS042204H02": {
+          "optionSet": "LS042204H02",
+          "nameDhis": "St. Magdalena HC"
+        },
+        "LS042305H01": {
+          "optionSet": "LS042305H01",
+          "nameDhis": "Mahlatsa HC"
+        },
+        "LS042305H02": {
+          "optionSet": "LS042305H02",
+          "nameDhis": "St David HC"
+        },
+        "LS042406H01": {
+          "optionSet": "LS042406H01",
+          "nameDhis": "Berea Hospital"
+        },
+        "LS042507H01": {
+          "optionSet": "LS042507H01",
+          "nameDhis": "Koali HC"
+        },
+        "LS042608H01": {
+          "optionSet": "LS042608H01",
+          "nameDhis": "Bethany Mission HC"
+        },
+        "LS042608H02": {
+          "optionSet": "LS042608H02",
+          "nameDhis": "Good Sherpard HC"
+        },
+        "LS042709H01": {
+          "optionSet": "LS042709H01",
+          "nameDhis": "Maqhaka HC"
+        },
+        "LS054701H01": {
+          "optionSet": "LS054701H01",
+          "nameDhis": "Sekameng HC"
+        },
+        "LS054701H02": {
+          "optionSet": "LS054701H02",
+          "nameDhis": "T?akholo HC"
+        },
+        "LS054802H01": {
+          "optionSet": "LS054802H01",
+          "nameDhis": "Kolo HC"
+        },
+        "LS054802H02": {
+          "optionSet": "LS054802H02",
+          "nameDhis": "Motsekuoa HC"
+        },
+        "LS054903H01": {
+          "optionSet": "LS054903H01",
+          "nameDhis": "Masemouse HC"
+        },
+        "LS054903H02": {
+          "optionSet": "LS054903H02",
+          "nameDhis": "Matelile HC"
+        },
+        "LS054903H03": {
+          "optionSet": "LS054903H03",
+          "nameDhis": "Thaba-T?oeu HC"
+        },
+        "LS054904H01": {
+          "optionSet": "LS054904H01",
+          "nameDhis": "Emmaus HC"
+        },
+        "LS054904H02": {
+          "optionSet": "LS054904H02",
+          "nameDhis": "Malea-Lea HC"
+        },
+        "LS054904H03": {
+          "optionSet": "LS054904H03",
+          "nameDhis": "Ribaneng HC"
+        },
+        "LS054904H04": {
+          "optionSet": "LS054904H04",
+          "nameDhis": "St Andrew HC"
+        },
+        "LS054905H01": {
+          "optionSet": "LS054905H01",
+          "nameDhis": "Mount Olivet HC"
+        },
+        "LS054905H02": {
+          "optionSet": "LS054905H02",
+          "nameDhis": "Mount Tabor HC"
+        },
+        "LS054905H03": {
+          "optionSet": "LS054905H03",
+          "nameDhis": "Thabana-Morena HC"
+        },
+        "LS054906H01": {
+          "optionSet": "LS054906H01",
+          "nameDhis": "Samaria HC"
+        },
+        "LS054907H01": {
+          "optionSet": "LS054907H01",
+          "nameDhis": "Lit?oeneng HC"
+        },
+        "LS055208H01": {
+          "optionSet": "LS055208H01",
+          "nameDhis": "Leco-op HC"
+        },
+        "LS055208H02": {
+          "optionSet": "LS055208H02",
+          "nameDhis": "Mafeteng Hospital"
+        },
+        "LS065601H01": {
+          "optionSet": "LS065601H01",
+          "nameDhis": "Liphiring HC"
+        },
+        "LS065601H02": {
+          "optionSet": "LS065601H02",
+          "nameDhis": "Mofumahali-oa-Rosari HC"
+        },
+        "LS065601H03": {
+          "optionSet": "LS065601H03",
+          "nameDhis": "Mohalinyane HC"
+        },
+        "LS065702H01": {
+          "optionSet": "LS065702H01",
+          "nameDhis": "Ha T?epo HC"
+        },
+        "LS065803H01": {
+          "optionSet": "LS065803H01",
+          "nameDhis": "Nt?ekhe Hospital"
+        },
+        "LS065904H01": {
+          "optionSet": "LS065904H01",
+          "nameDhis": "Holy Cross HC"
+        },
+        "LS065904H02": {
+          "optionSet": "LS065904H02",
+          "nameDhis": "Morifi HC"
+        },
+        "LS066005H01": {
+          "optionSet": "LS066005H01",
+          "nameDhis": "Bethel HC"
+        },
+        "LS066005H02": {
+          "optionSet": "LS066005H02",
+          "nameDhis": "Lithipeng HC"
+        },
+        "LS066005H03": {
+          "optionSet": "LS066005H03",
+          "nameDhis": "Phamong HC"
+        },
+        "LS066108H01": {
+          "optionSet": "LS066108H01",
+          "nameDhis": "Mootsinyane HC"
+        },
+        "LS066108H02": {
+          "optionSet": "LS066108H02",
+          "nameDhis": "Mpharane HC"
+        },
+        "LS066209H01": {
+          "optionSet": "LS066209H01",
+          "nameDhis": "Nohana HC"
+        },
+        "LS066312H01": {
+          "optionSet": "LS066312H01",
+          "nameDhis": "Kuebunyane HC"
+        },
+        "LS066312H02": {
+          "optionSet": "LS066312H02",
+          "nameDhis": "Nkau HC"
+        },
+        "LS076401H01": {
+          "optionSet": "LS076401H01",
+          "nameDhis": "Dilli - Dilli HC"
+        },
+        "LS076503H01": {
+          "optionSet": "LS076503H01",
+          "nameDhis": "Quthing Hospital"
+        },
+        "LS076503H02": {
+          "optionSet": "LS076503H02",
+          "nameDhis": "Villa Maria HC"
+        },
+        "LS076605H01": {
+          "optionSet": "LS076605H01",
+          "nameDhis": "Ha Makoae HC"
+        },
+        "LS076605H02": {
+          "optionSet": "LS076605H02",
+          "nameDhis": "St Gabriel HC"
+        },
+        "LS076605H03": {
+          "optionSet": "LS076605H03",
+          "nameDhis": "Tsatsane HC"
+        },
+        "LS076707H01": {
+          "optionSet": "LS076707H01",
+          "nameDhis": "Maqokho HC"
+        },
+        "LS076707H02": {
+          "optionSet": "LS076707H02",
+          "nameDhis": "St.Mathews HC"
+        },
+        "LS076809H01": {
+          "optionSet": "LS076809H01",
+          "nameDhis": "Mphaki HC"
+        },
+        "LS086902H01": {
+          "optionSet": "LS086902H01",
+          "nameDhis": "Sacred heart HC"
+        },
+        "LS086902H02": {
+          "optionSet": "LS086902H02",
+          "nameDhis": "Sekake HC"
+        },
+        "LS086903H01": {
+          "optionSet": "LS086903H01",
+          "nameDhis": "Hermitage HC"
+        },
+        "LS086903H02": {
+          "optionSet": "LS086903H02",
+          "nameDhis": "Machabeng Hospital"
+        },
+        "LS087004H01": {
+          "optionSet": "LS087004H01",
+          "nameDhis": "Lebakeng HC"
+        },
+        "LS087004H02": {
+          "optionSet": "LS087004H02",
+          "nameDhis": "Matebeng HC"
+        },
+        "LS087004H03": {
+          "optionSet": "LS087004H03",
+          "nameDhis": "Melikane HC"
+        },
+        "LS087004H04": {
+          "optionSet": "LS087004H04",
+          "nameDhis": "Mohlapiso HC"
+        },
+        "LS087004H05": {
+          "optionSet": "LS087004H05",
+          "nameDhis": "Tebellong Hospital"
+        },
+        "LS087108H01": {
+          "optionSet": "LS087108H01",
+          "nameDhis": "Rankakala HC"
+        },
+        "LS087108H02": {
+          "optionSet": "LS087108H02",
+          "nameDhis": "Sehlaba-Thebe HC"
+        },
+        "LS087108H03": {
+          "optionSet": "LS087108H03",
+          "nameDhis": "St Francis HC"
+        },
+        "LS097701H01": {
+          "optionSet": "LS097701H01",
+          "nameDhis": "Mapholaneng HC"
+        },
+        "LS097701H02": {
+          "optionSet": "LS097701H02",
+          "nameDhis": "St Martin HC"
+        },
+        "LS097805H01": {
+          "optionSet": "LS097805H01",
+          "nameDhis": "Molika-Liko HC"
+        },
+        "LS097805H02": {
+          "optionSet": "LS097805H02",
+          "nameDhis": "Tlhanyaku HC"
+        },
+        "LS097908H01": {
+          "optionSet": "LS097908H01",
+          "nameDhis": "Malefiloane HC"
+        },
+        "LS097909H01": {
+          "optionSet": "LS097909H01",
+          "nameDhis": "Mokhotlong Hospital"
+        },
+        "LS098012H01": {
+          "optionSet": "LS098012H01",
+          "nameDhis": "Libibing HC"
+        },
+        "LS098012H02": {
+          "optionSet": "LS098012H02",
+          "nameDhis": "Linakaneng HC"
+        },
+        "LS098012H03": {
+          "optionSet": "LS098012H03",
+          "nameDhis": "Moeketsane HC"
+        },
+        "LS098012H04": {
+          "optionSet": "LS098012H04",
+          "nameDhis": "St James HC"
+        },
+        "LS107201H01": {
+          "optionSet": "LS107201H01",
+          "nameDhis": "Auray HC"
+        },
+        "LS107201H02": {
+          "optionSet": "LS107201H02",
+          "nameDhis": "St James  Hospital"
+        },
+        "LS107305H01": {
+          "optionSet": "LS107305H01",
+          "nameDhis": "Ha Lephoi HC"
+        },
+        "LS107305H02": {
+          "optionSet": "LS107305H02",
+          "nameDhis": "Ha Popa HC"
+        },
+        "LS107305H03": {
+          "optionSet": "LS107305H03",
+          "nameDhis": "Methalaneng HC"
+        },
+        "LS107305H04": {
+          "optionSet": "LS107305H04",
+          "nameDhis": "Montmartre HC"
+        },
+        "LS107306H01": {
+          "optionSet": "LS107306H01",
+          "nameDhis": "Paray  Hospital"
+        },
+        "LS107306H02": {
+          "optionSet": "LS107306H02",
+          "nameDhis": "Thaba-Tseka HC"
+        },
+        "LS107508H01": {
+          "optionSet": "LS107508H01",
+          "nameDhis": "Ha Mokoto HC"
+        },
+        "LS107508H02": {
+          "optionSet": "LS107508H02",
+          "nameDhis": "Mohlanapeng HC"
+        },
+        "LS107510H01": {
+          "optionSet": "LS107510H01",
+          "nameDhis": "Bobete HC "
+        },
+        "LS107510H02": {
+          "optionSet": "LS107510H02",
+          "nameDhis": "Katse HC"
+        },
+        "LS107510H03": {
+          "optionSet": "LS107510H03",
+          "nameDhis": "Khohlo-Nt?o HC"
+        },
+        "LS107510H04": {
+          "optionSet": "LS107510H04",
+          "nameDhis": "Semenanyana HC"
+        },
+        "LS107611H01": {
+          "optionSet": "LS107611H01",
+          "nameDhis": "Manamaneng HC"
+        },
+        "LS107611H02": {
+          "optionSet": "LS107611H02",
+          "nameDhis": "Sehong-Hong HC"
+        },
+        "LS107611H03": {
+          "optionSet": "LS107611H03",
+          "nameDhis": "St Theresa HC"
+        },
+        "LS107611H04": {
+          "optionSet": "LS107611H04",
+          "nameDhis": "Linakeng HC"
+        }
       }
     }
 }

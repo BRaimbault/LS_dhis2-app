@@ -45,11 +45,11 @@ var Tools = {
 
   },
   getUrl: function() {
-    //var e = "production";
-    window.e = undefined;
+    window.e = "production";
+    //window.e = undefined;
     if (window.e) {
       console.log('fun Tools.getUrl - prod_path');
-      window.dhisUrl = window.location.href.split('apps/')[0];
+      window.dhisUrl = window.location.href.split('api/apps/')[0];
       console.log("fun Tools.getUrl - window.dhisUrl: ", window.dhisUrl);
     } else {
       console.log('fun Tools.getUrl - dev_path');
@@ -63,7 +63,7 @@ var Tools = {
 
     if (!window.config || window.config.status == "ERROR" || '"'+ window.config+'"' == data) {
 
-      var url = window.dhisUrl + "api/dataStore/LS_dhis2-app/list";
+      var url = window.dhisUrl + "api/dataStore/LS_dhis2-app/config";
 
       var xhr = new XMLHttpRequest();
       xhr.withCredentials = true;
@@ -79,7 +79,7 @@ var Tools = {
         var is_error = JSON.parse(window.list);
         if (is_error.status == "ERROR") {
 
-          var url = window.dhisUrl + "api/dataStore/LS_dhis2-app/list";
+          var url = window.dhisUrl + "api/dataStore/LS_dhis2-app/config";
 
           var xhr = new XMLHttpRequest();
           xhr.withCredentials = true;

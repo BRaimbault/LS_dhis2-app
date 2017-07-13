@@ -8,6 +8,7 @@ import AceEditor from 'react-ace';
 
 import 'brace/mode/json';
 import 'brace/theme/github';
+import 'brace/ext/searchbox';
 
 var ProcessingAdmin = {
   onLoad: function(newValue) {
@@ -18,9 +19,12 @@ var ProcessingAdmin = {
   onChange: function(newValue) {
     window.list_new = newValue;
   },
+  handleInputChange: function(e) {
+    window.password_entered = document.getElementById('password').value;
+  },
   start: function() {
     Tools.getUrl();
-    var url = window.dhisUrl + "api/dataStore/LS_dhis2-app/list";
+    var url = window.dhisUrl + "api/dataStore/LS_dhis2-app/config";
     console.log(url);
     var oReq = new XMLHttpRequest();
     oReq.withCredentials = true;
@@ -46,7 +50,7 @@ var ProcessingAdmin = {
     ReactDOM.render((<AceEditor
       mode="json"
       theme="github"
-      name="ls_list"
+      name="ls_config"
       onLoad={ProcessingAdmin.onLoad}
       onChange={ProcessingAdmin.onChange}
       fontSize={14}
@@ -64,31 +68,26 @@ var ProcessingAdmin = {
       }}/>), document.getElementById('ace'));
   },
   save: function() {
-    var List = JSON.parse(window.list_new);
+    if (window.password_entered == "LS1707") {
 
-    //console.log(JSON.parse(window.list_new));
+      var List = JSON.parse(window.list_new);
 
-    /*var test = List.stages["Client Information"].evaluate;
-    console.log(test);
-    console.log(typeof test);
+      var data = window.list_new;
+      var url = window.dhisUrl + "api/dataStore/LS_dhis2-app/config";
 
-    var fct = eval(test);
-    console.log(fct);
-    console.log(fct('blibli'));*/
+      var xhr = new XMLHttpRequest();
+      xhr.withCredentials = true;
 
-    var data = window.list_new;
-    var url = window.dhisUrl + "api/dataStore/LS_dhis2-app/list";
+      xhr.open("PUT", url);
+      xhr.setRequestHeader("content-type", "application/json");
 
-    var xhr = new XMLHttpRequest();
-    xhr.withCredentials = true;
+      xhr.send(data);
 
-    xhr.open("PUT", url);
-    xhr.setRequestHeader("content-type", "application/json");
-
-    xhr.send(data);
-
-    window.config = JSON.parse(window.list_new);
-    console.log("window.config", window.config);
+      window.config = JSON.parse(window.list_new);
+      console.log("window.config", window.config);
+    } else {
+      document.getElementById('password').value = "Wrong password!";
+    }
   }
 };
 
