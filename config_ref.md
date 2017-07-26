@@ -2,8 +2,8 @@
 
 | element | uid | link |
 |---------|-----|------|
-| trackedEntityAttributes and options | program: KDgzpKX3h2S |  [here](http://data/api/programs/KDgzpKX3h2S.json?fields=programTrackedEntityAttributes[trackedEntityAttribute[name,id,valueType,optionSet[options[code,name]]]]) |
-| dataElements and options by stage | program: KDgzpKX3h2S |  [here](http://data/api/programs/KDgzpKX3h2S.json?fields=programStages[id,name,programStageDataElements[dataElement[name,id,valueType,optionSet[options[code,name]]]]]) |
+| trackedEntityAttributes and options | program: KDgzpKX3h2S |  [here](https://data.psi-mis.org/api/programs/KDgzpKX3h2S.json?fields=programTrackedEntityAttributes[trackedEntityAttribute[name,id,valueType,optionSet[options[code,name]]]]) |
+| dataElements and options by stage | program: KDgzpKX3h2S |  [here](https://data.psi-mis.org/api/programs/KDgzpKX3h2S.json?fields=programStages[id,name,programStageDataElements[dataElement[name,id,valueType,optionSet[options[code,name]]]]]) |
 | PSI workers | category: qVl8p3w3fI5 | [here](https://data.psi-mis.org/api/25/categories/qVl8p3w3fI5.json?fields=categoryOptions[name,id,code]) |
 | adm1 (Districts) | optionSet: LofSGLWMJnX | [here](https://data.psi-mis.org/api/25/optionSets/LofSGLWMJnX.json?fields=options[id,name,code]) |
 | adm2 (Councils) | optionSet: lBe8SEycwQV | [here](https://data.psi-mis.org/api/25/optionSets/lBe8SEycwQV.json?fields=options[id,name,code]) |
